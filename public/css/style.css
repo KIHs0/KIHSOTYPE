@@ -1,0 +1,552 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+/* carter  */
+
+.carter {
+  position: absolute;
+  height: 1.2em;
+  width: 2px;
+  background-color: gold; /* Modern blue color */
+  border-radius: 1px;
+  transition: left 0.1s ease, top 0.1s ease;
+  pointer-events: none;
+  z-index: 100;
+  animation: blink 1s infinite;
+  /* box-shadow: 0 0 3px rgba(74, 125, 255, 0.5); */
+  transform: translateY(0.1em); /* Slight vertical adjustment */
+}
+
+/* Animation for blinking effect */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Different states for the cursor */
+.carter.typing {
+  animation: none;
+  background-color: rgb(57, 255, 20); /* Changes color during active typing */
+  width: 3px;
+}
+
+.carter.idle {
+  animation-duration: 2s; /* Slower blink when idle */
+}
+
+/* For dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  .carter {
+    background-color: #ffff00;
+  }
+}
+/* .carter {
+  position: absolute;
+  opacity: 1;
+  z-index: 100;
+  height: 2.8rem;
+  border: 1px solid green;
+  transition: all 0.3s ease;
+  animation: blink 0.8s infinite;
+} */
+/* carter */
+
+html {
+  /* scroll-behavior: auto !important; */
+  overflow: hidden;
+  height: 100%;
+  cursor: none;
+}
+body {
+  cursor: none;
+  /* cursor: none; */
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 100vw;
+  height: 100vh;
+  min-height: 35vh;
+  max-height: 1200px;
+  background: #191a1b;
+  color: gray;
+  text-align: center;
+  padding: 0.6rem;
+  font-family: "Roboto ";
+}
+
+.pacman {
+  /* position: absolute; */
+  opacity: 1;
+  text-align: center;
+  margin: 100px 32rem;
+  fill: yellow;
+  animation: moveForward3D 1.2s linear;
+  transform-style: preserve-3d;
+}
+.bi-arrow-clockwise {
+  position: absolute;
+  margin: -8rem -4rem auto;
+  color: beige;
+  width: fit-content;
+}
+.bi-arrow-clockwise span {
+  display: none;
+}
+
+.bi-arrow-clockwise:hover span {
+  font-size: 0.4em;
+  padding: 2px;
+  display: block;
+}
+@keyframes moveForward3D {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+  100% {
+    transform: translateX(100vw) translateZ(300px);
+  }
+}
+.refresh {
+  width: fit-content;
+  margin: 0 auto;
+}
+.refresh strong {
+  box-shadow: inset 1px 3px 19px rgba(130, 135, 225, 50.4);
+  padding: 1rem 2rem;
+  border: none;
+  outline: none;
+  color: beige;
+  font-family: "Roboto";
+  animation: borderinset 0.3s infinite;
+}
+.refresh span {
+  font-weight: 900;
+  color: beige;
+  font-family: "Roboto";
+}
+.refresh em {
+  padding: 1rem;
+  font-size: 1.4rem;
+  animation: fadeIn 1.8s infinite;
+}
+
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100px;
+  /* border: 1px solid beige; */
+  padding: 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  text-align: justify;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  font-family: "Roboto Mono", monospace;
+  position: sticky;
+}
+
+.headerContainer .leftSides {
+  display: flex;
+  height: 100%;
+  width: 40vw;
+  list-style: none;
+  /* border: 2px solid beige; */
+  /* justify-content: space-between; */
+}
+
+.headerContainer .leftSides .leftsidesEnd,
+.headerContainer .rightSides {
+  display: flex;
+  gap: 2rem;
+  padding-left: 8rem;
+}
+
+.headerContainer a {
+  text-decoration: none;
+  color: rgba(128, 128, 128, 0.872);
+  opacity: 0.6;
+}
+
+svg {
+  margin-right: 1rem;
+}
+/* header  CSS ^  */
+
+.footer {
+  margin: 0 auto;
+
+  max-width: 1200px;
+  width: 100vw;
+  height: 200px;
+  /* border: 1px solid beige; */
+  padding: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  text-align: justify;
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  font-family: monospace;
+  position: sticky;
+}
+
+.footer .leftSides {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+.footer .rightSides {
+  display: flex;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.footer .leftSides a,
+.footer .rightSides a {
+  text-decoration: none;
+  color: rgba(128, 128, 128, 0.689);
+  opacity: 0.8;
+  font-size: 1rem;
+}
+.transform {
+  transform: translateY(-1000px); /* Starts 20px lower */
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+  display: none;
+}
+
+/* footer CSS ^ */
+.textarea-container {
+  /* cursor: pointer; */
+  /* cursor: none; */
+  overflow: hidden;
+  /* border: 2px solid beige; */
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 2rem;
+  max-height: 100vh;
+  height: 200px;
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 180px;
+}
+
+.textarea-container div {
+  position: inherit;
+  display: inline-block;
+  font-size: 2.7rem;
+  text-align: justify;
+}
+
+.success {
+  color: white;
+}
+.failure {
+  color: rgba(255, 0, 0, 0.85);
+}
+input {
+  opacity: 0;
+}
+
+.space {
+  opacity: 0.8; /* Make spaces semi-transparent */
+  margin-left: -0.4rem; /* Add horizontal padding */
+}
+
+letter {
+  font-family: "JetBrains Mono";
+  display: inline-block;
+  /* animation: fadeIn 0.3s ease-out; */
+  margin-left: 0.3px;
+}
+a:hover {
+  cursor: none;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 1;
+    color: black;
+  }
+  to {
+    opacity: 1;
+    color: beige;
+  }
+}
+@keyframes blink {
+  from {
+    opacity: 0;
+    scale: 80%;
+    color: black;
+  }
+  to {
+    color: rgb(243, 243, 230);
+    opacity: 1;
+  }
+}
+
+@keyframes borderinset {
+  0% {
+    box-shadow: inset 1px 3px 21px rgba(130, 135, 225, 50.4);
+  }
+  50% {
+    box-shadow: inset 1px 3px 19px rgba(130, 135, 225, 50.4);
+  }
+  75% {
+    box-shadow: inset 1px 3px 17px rgba(130, 135, 225, 50.4);
+  }
+  100% {
+    box-shadow: inset 1px 3px 19px rgba(130, 135, 225, 50.4);
+  }
+}
+
+.swordsvg {
+  width: 1.8rem;
+  fill: rgba(218, 165, 32, 0.912);
+  rotate: 180deg;
+}
+.sss {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+}
+
+.logotext span {
+  font-weight: bolder;
+  font-family: "Monoton";
+  color: yellow;
+}
+.logotextsvg {
+  width: 3rem;
+  animation: logosvg 0.2s linear;
+  opacity: 10;
+  z-index: 1000;
+  fill: yellow;
+}
+
+@keyframes logosvg {
+  0% {
+    fill: gray;
+    rotate: 90deg;
+  }
+  25% {
+    fill: white;
+    rotate: 100deg;
+  }
+  50% {
+    fill: gray;
+    rotate: 150deg;
+  }
+  75% {
+    fill: whitesmoke;
+    rotate: 180deg;
+  }
+  100% {
+    fill: yellow;
+    rotate: 200deg;
+  }
+}
+/*  header anime */
+
+.leftsidesEnd a svg {
+  fill: yellow;
+}
+.leftsidesEnd a span,
+.rightSides a span {
+  display: none;
+  font-size: 0.3em;
+}
+
+.leftsidesEnd a:hover span {
+  display: block;
+}
+
+.rightSides a span {
+  display: none;
+}
+.rightSides a:hover span {
+  display: block;
+}
+.rightSides a:hover svg {
+  fill: yellow;
+}
+
+@media (max-width: 400px) {
+  .pacman {
+    margin: 7em auto; /* <-- thala for a reason--> */
+  }
+  .headerContainer .leftSides .logotext span {
+    font-size: 0.6em;
+  }
+  .footer {
+    display: none;
+  }
+  .headerContainer .rightSides a {
+    display: none;
+  }
+
+  .headerContainer .leftsidesEnd a {
+    display: none;
+  }
+
+  .rightSidesMob {
+    display: block;
+  }
+
+  .refresh {
+    display: none;
+  }
+  .logotext span {
+    display: flex;
+    font-size: 1em;
+  }
+
+  .footerMob {
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    justify-content: space-between;
+  }
+  .footerMob .leftfootermob,
+  .footerMob .rightfootermob {
+    display: flex;
+  }
+  .bi-arrow-clockwise {
+    margin: -6rem auto;
+  }
+  .footerMob h1 {
+    display: flex;
+    font-size: 0.6em;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+  }
+  .footerMob a {
+    text-align: justify;
+    text-decoration: none;
+    list-style: none;
+    color: gray;
+  }
+
+  .footerMob a span {
+    display: none;
+  }
+  .footerMob a:hover svg {
+    fill: navajowhite;
+  }
+}
+
+/*  for mobile */
+
+/* right side mob header */
+.rightSidesMob {
+  display: none;
+  gap: 1.2em;
+  font-size: 0.4em;
+}
+
+.rightSidesMob icon {
+  font-size: 2em;
+}
+.rightSidesMob a span {
+  display: none;
+}
+.rightSidesMob a:hover svg {
+  fill: yellow;
+}
+/* leftside mob footer */
+.footerMob,
+.footerMob .leftfootermob,
+.footerMob .rightfootermob {
+  display: none;
+}
+
+/* warning notification */
+
+.notification {
+  background-color: rgba(40, 40, 40, 0.9);
+  color: #ff5555;
+  padding: 1.7rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: none;
+  width: fit-content;
+  height: fit-content;
+  animation: borderPulse 0.8s linear;
+}
+
+@keyframes borderPulse {
+  0% {
+    transition: all 1s ease;
+    transform: scale(1);
+  }
+  50% {
+  }
+  100% {
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+}
+
+#thanks {
+  border: none;
+  outline: none;
+  width: fit-content;
+  padding: 2rem;
+  height: fit-content;
+  box-shadow: 0px 0px 10px hsl(330, 3%, 14%);
+  color: yellow;
+  transition: all 0.3s ease-in;
+  display: none;
+  position: absolute;
+  margin: 10px auto;
+  transform: translateY(10px);
+  animation: fadeIn 0.9s linear;
+  text-wrap: wrap;
+  background: transparent;
+  z-index: 1000;
+}
+
+.version {
+  border: none;
+  outline: none;
+  width: 900px;
+  height: fit-content;
+  padding: 1.4rem;
+  box-shadow: 0px 0px 10px hsl(330, 3%, 14%);
+  color: yellow;
+  transition: all 0.3s ease-in;
+  display: none;
+  text-align: center;
+  margin: -200px auto;
+  margin-left: -320px;
+  animation: fadeIn 0.9s linear;
+  text-wrap: wrap;
+  background: transparent;
+  z-index: 1000;
+}
+
+.version strong {
+  font-size: 16px;
+}
+
+
