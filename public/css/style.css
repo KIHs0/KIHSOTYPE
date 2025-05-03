@@ -390,20 +390,35 @@ a:hover {
   .sss {
     display: none;
   }
+  .notification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -15rem;
+    width: fit-content;
+    font-size: 0.8rem;
+    animation: borderPulse 7s linear;
+  }
+  .quote-container letter {
+    font-size: 1.9rem;
+  }
+
+  .carter {
+    font-weight: 100;
+    font-size: 28px;
+  }
 
   .rightSides {
     display: none;
   }
-  .rightSidesMob a .icon:hover svg {
-    fill: yellow;
-  }
   body {
     width: 100%; /* Full width on small screens */
-    padding: 3px; /* Smaller padding */
+    padding: 10px; /* Smaller padding */
   }
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
   }
+
   .headerContainer .leftSides .logotext span {
     font-size: 0.6em;
   }
@@ -452,23 +467,29 @@ a:hover {
   .footer {
     display: none;
   }
-  .footerMob {
-    padding: 1em;
+  .footerMob .leftfootermob {
+    padding: 1rem;
     display: flex;
-    justify-content: space-between;
+  }
+  .footerMob {
+    display: flex;
+    justify-content: space-around;
   }
 
+  .footerMob .rightfootermob {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+  }
   .bi-arrow-clockwise {
     margin: -6rem auto;
   }
   .footerMob h1 {
     font-size: 0.6em;
-    display: block;
+    display: flex;
   }
 
   .footerMob a {
-    display: flex;
-    flex-direction: column;
     text-align: justify;
     text-decoration: none;
     list-style: none;
@@ -518,13 +539,13 @@ a:hover {
 
 @keyframes borderPulse {
   0% {
-    transition: all 1s ease;
+    transition: all 5s ease;
     transform: scale(1);
   }
   50% {
   }
   100% {
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    transition: transform 4.5s ease-out, opacity 3.5s ease-out;
     transform: translateY(-200px);
     opacity: 0;
   }

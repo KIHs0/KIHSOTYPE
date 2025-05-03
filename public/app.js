@@ -104,8 +104,8 @@ function cartemove(char, position, element) {
     // Get the position relative to the quote container
     const containerRect = quoteContainer.getBoundingClientRect();
     const charRect = currentChar.getBoundingClientRect();
-    console.log(charRect.left, containerRect.left);
-    console.log(charRect.top, containerRect.top);
+    // console.log(charRect.left, containerRect.left);
+    // console.log(charRect.top, containerRect.top);
     // Position the cursor at the end of the current character
     carter.style.position = "absolute";
     carter.style.left = `${charRect.left - containerRect.left}px`;
@@ -134,7 +134,7 @@ const checkAval = setInterval(() => {
   if (mytextContainer.length) {
     clearInterval(checkAval);
     let arr = [...mytextContainer];
-    console.log(arr.length);
+    // console.log(arr.length);
     for (let i = 0; i < arr.length; i++) {
       if (arr[i + 1] === undefined) {
         break;
@@ -155,7 +155,7 @@ const checkAval = setInterval(() => {
 
 // sending rect value to findout char index
 function tomoveup(s) {
-  console.log("fucntion called");
+  // console.log("fucntion called");
   let trackedWords = [];
 
   userInput.addEventListener("keydown", (e) => {
