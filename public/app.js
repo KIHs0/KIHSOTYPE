@@ -11,11 +11,14 @@ let backspaceCount = 0;
 // how you render
 
 const rendering = async () => {
+  xyz();
+
   backspaceCount = 0;
   userInput.value = "";
   const res = await fetch(url);
   const data = await res.json();
   quote = data[0].content;
+
   // now the quote to be changed in an array
 
   const words = quote
@@ -51,7 +54,18 @@ const xyz = async () => {
 
     if (cq.length - 1 === userInputChars.length) {
       console.log("thanks for completing");
-      return rendering();
+      let totalwords = userInputChars.length;
+      let timer = 30;
+      let count = 0;
+      for (arr of cq) {
+        if (arr.classList.contains("failure")) {
+          count++;
+        }
+      }
+      let uncorrectedErrors = count;
+
+      wpm(totalwords, timer, uncorrectedErrors);
+      // return rendering();
     }
 
     // Update current position based on cursor location
@@ -87,6 +101,47 @@ const xyz = async () => {
     }
   });
 };
+function wpm(tw, timer, ucE) {
+  let grossWpm = (tw / 5 / 60) * 100;
+  let netWpm = grossWpm - ucE / 60;
+  let finalnetWpm = parseInt(netWpm);
+  console.log({ tw, timer, ucE });
+  let wpmContainer = document.querySelector(".wpm-container");
+  wpmContainer.style.display = "block";
+
+  // Example usage:
+  console.log(finalnetWpm);
+  updateWPMDisplay(finalnetWpm); // Call this with your actual WPM value
+}
+
+// above fx works first as user completed the game
+// downward fx works to show user their speed with better UI/UX
+function updateWPMDisplay(netWpm) {
+  const wpmElement = document.querySelector(".wpm-value");
+  const duration = 2000; // Animation duration in milliseconds
+  const startTime = performance.now();
+  const startValue = 0;
+
+  requestAnimationFrame(animateWPM);
+
+  function animateWPM(currentTime) {
+    const elapsedTime = currentTime - startTime;
+    const progress = Math.min(elapsedTime / duration, 1);
+
+    // Ease-out function for smoother animation
+    const easedProgress = 1 - Math.pow(1 - progress, 2);
+
+    const currentValue = Math.floor(easedProgress * netWpm);
+    wpmElement.textContent = currentValue;
+
+    if (progress < 1) {
+      requestAnimationFrame(animateWPM);
+    } else {
+      wpmElement.textContent = netWpm; // Ensure final value is exact
+    }
+  }
+}
+
 // -------------------------carter
 function cartemove(char, position, element) {
   // Add this to your input event listener
@@ -113,7 +168,7 @@ function cartemove(char, position, element) {
     carter.style.opacity = "1";
   }
 }
-// ---------------------------When user is actively typing
+// ---------------------------When user is actively typing CSS
 function handleTyping() {
   const carter = document.querySelector(".carter");
   carter.classList.add("typing");
@@ -127,7 +182,6 @@ function handleTyping() {
   }, 1000);
 }
 
-//--------------------------carter
 // how is rect findout
 const checkAval = setInterval(() => {
   const mytextContainer = document.querySelectorAll(".quote-container .word ");
@@ -196,9 +250,6 @@ const moveup = (tw) => {
     });
   }
 };
-// initial setup's
-xyz();
-rendering();
 
 // basic setup's
 window.onload = () => {
@@ -214,7 +265,6 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && (e.key === "r" || e.key === "Alt")) {
     location.reload();
-    console.log("done");
   }
 });
 
@@ -242,7 +292,7 @@ document.addEventListener("keydown", function (e) {
       }, 5000);
     } else {
       backspaceCount++;
-      console.log(`Backspaces left: ${maxBackspacesAllowed - backspaceCount}`);
+      // console.log(`Backspaces left: ${maxBackspacesAllowed - backspaceCount}`);
     }
   }
 });
@@ -258,6 +308,7 @@ document.addEventListener("mousemove", (e) => {
 const refrehtbn = document.querySelector(".bi-arrow-clockwise");
 refrehtbn.addEventListener("click", () => {
   rendering();
+  location.reload();
 });
 function thanks() {
   let thanks = document.getElementById("thanks");
@@ -269,3 +320,6 @@ function version() {
   let v = document.querySelector(".version");
   v.style.display = "block";
 }
+
+// initial setup's
+rendering();

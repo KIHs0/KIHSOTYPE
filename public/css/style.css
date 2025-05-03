@@ -5,7 +5,29 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
+}
+.wpm-container {
+  display: none;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background-color: #fec20c;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wpm-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #2c3e50;
+  display: inline-block;
+  min-width: 80px;
+}
+
+.wpm-label {
+  font-size: 24px;
+  color: #7f8c8d;
+  margin-left: 5px;
 }
 /* carter  */
 
@@ -390,6 +412,9 @@ a:hover {
   .sss {
     display: none;
   }
+  .space {
+    margin-left: -1rem;
+  }
   .notification {
     display: flex;
     justify-content: center;
@@ -400,7 +425,8 @@ a:hover {
     animation: borderPulse 7s linear;
   }
   .quote-container letter {
-    font-size: 1.9rem;
+    font-size: 1.4rem;
+    font-weight: bolder;
   }
 
   .carter {
