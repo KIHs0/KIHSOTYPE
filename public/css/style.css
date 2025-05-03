@@ -387,15 +387,27 @@ a:hover {
 }
 
 @media (max-width: 400px) {
+  .sss {
+    display: none;
+  }
+
+  .rightSides {
+    display: none;
+  }
+  .rightSidesMob a .icon:hover svg {
+    fill: yellow;
+  }
+  body {
+    width: 100%; /* Full width on small screens */
+    padding: 3px; /* Smaller padding */
+  }
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
   }
   .headerContainer .leftSides .logotext span {
     font-size: 0.6em;
   }
-  .footer {
-    display: none;
-  }
+
   .headerContainer .rightSides a {
     display: none;
   }
@@ -404,77 +416,88 @@ a:hover {
     display: none;
   }
 
-  .rightSidesMob {
-    display: block;
+  .rightSidesMob a span {
+    display: none;
   }
 
+  .leftfootermob a span {
+    display: none;
+  }
+
+  .rightfootermob a span {
+    display: none;
+  }
+  .rightSidesMob a:hover svg {
+    fill: yellow;
+  }
+
+  .rightSidesMob {
+    display: grid;
+    place-content: center;
+    margin-right: 0;
+    justify-items: center;
+  }
+
+  .rightSidesMob a {
+    display: flex;
+    flex-direction: column;
+  }
   .refresh {
     display: none;
   }
   .logotext span {
     display: flex;
-    font-size: 1em;
+    font-size: 3rem;
   }
-
+  .footer {
+    display: none;
+  }
   .footerMob {
     padding: 1em;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-
     justify-content: space-between;
   }
-  .footerMob .leftfootermob,
-  .footerMob .rightfootermob {
-    display: flex;
-  }
+
   .bi-arrow-clockwise {
     margin: -6rem auto;
   }
   .footerMob h1 {
-    display: flex;
     font-size: 0.6em;
-    /* flex-direction: column; */
-    flex-wrap: wrap;
+    display: block;
   }
+
   .footerMob a {
+    display: flex;
+    flex-direction: column;
     text-align: justify;
     text-decoration: none;
     list-style: none;
     color: gray;
   }
-
-  .footerMob a span {
-    display: none;
-  }
-  .footerMob a:hover svg {
-    fill: navajowhite;
-  }
 }
 
 /*  for mobile */
 
-/* right side mob header */
-.rightSidesMob {
-  display: none;
-  gap: 1.2em;
-  font-size: 0.4em;
-}
+@media (min-width: 400px) {
+  /* right side mob header */
+  .rightSidesMob {
+    display: none;
+    gap: 0.3rem;
+    font-size: 0.3em;
+  }
+  .footerMob {
+    display: none;
+  }
 
-.rightSidesMob icon {
-  font-size: 2em;
-}
-.rightSidesMob a span {
-  display: none;
-}
-.rightSidesMob a:hover svg {
-  fill: yellow;
-}
-/* leftside mob footer */
-.footerMob,
-.footerMob .leftfootermob,
-.footerMob .rightfootermob {
-  display: none;
+  .rightSidesMob icon {
+    font-size: 2em;
+  }
+  .rightSidesMob a span {
+    display: none;
+  }
+  .rightSidesMob a:hover svg {
+    fill: yellow;
+  }
 }
 
 /* warning notification */
@@ -548,5 +571,3 @@ a:hover {
 .version strong {
   font-size: 16px;
 }
-
-
