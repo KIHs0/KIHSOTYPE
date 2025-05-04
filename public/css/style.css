@@ -458,6 +458,7 @@ a:hover {
     justify-content: center; /* Center content vertically (optional) */
     text-align: center; /* Center-align text */
     touch-action: manipulation; /* Improve touch responsiveness */
+    line-height: 0.9;
   }
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
