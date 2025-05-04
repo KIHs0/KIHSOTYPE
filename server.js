@@ -20,7 +20,7 @@ app.engine("ejs", engine);
 app.set("view engine", "ejs");
 //---------------router Settings
 const router = require("./routes/routesFst");
-app.use("/", router);
+app.use(router);
 
 //session
 const session = require("express-session");
