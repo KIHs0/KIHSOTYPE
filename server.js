@@ -3,13 +3,12 @@ const app = express();
 //----------setting  up Paths
 const path = require("path");
 
-// Move the favicon middleware before express.static
 const favicon = require("serve-favicon");
-app.use(favicon(path.join(__dirname, "public", "favicons", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "public", "favicons2", "favicon.ico")));
 
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static("public"));
+app.use(express.static("public"));
 
 //-----------middleware for parsing res
 app.use(express.urlencoded({ extended: true }));
@@ -33,6 +32,7 @@ const sessionObtained = {
 const flash = require("express-flash");
 app.use(session(sessionObtained));
 app.use(flash());
+
 //-------------------server Listening
 const port = 6060;
 app.listen(port, (req, res) => {
@@ -40,5 +40,5 @@ app.listen(port, (req, res) => {
 });
 app.get("/favicon.ico", (req, res) => {
   console.log("at route faviicon");
-  res.sendFile(path.join(__dirname, "public", "favicons", "favicon.ico"));
+  res.sendFile(path.join(__dirname, "public", "favicons2", "favicon.ico"));
 });

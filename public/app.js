@@ -53,7 +53,7 @@ const xyz = async () => {
     const userInputChars = Array.from(e.target.value);
 
     if (cq.length - 1 === userInputChars.length) {
-      console.log("thanks for completing");
+      // console.log("thanks for completing");
       let totalwords = userInputChars.length;
       let timer = 30;
       let count = 0;
@@ -101,16 +101,18 @@ const xyz = async () => {
     }
   });
 };
+
+// above two fx are Main(). EG: Workstation
 function wpm(tw, timer, ucE) {
   let grossWpm = (tw / 5 / 60) * 100;
   let netWpm = grossWpm - ucE / 60;
   let finalnetWpm = parseInt(netWpm);
-  console.log({ tw, timer, ucE });
+  // console.log({ tw, timer, ucE });
   let wpmContainer = document.querySelector(".wpm-container");
   wpmContainer.style.display = "block";
 
   // Example usage:
-  console.log(finalnetWpm);
+  // console.log(finalnetWpm);
   updateWPMDisplay(finalnetWpm); // Call this with your actual WPM value
 }
 
@@ -316,7 +318,7 @@ function thanks() {
 }
 
 function version() {
-  console.log("hey");
+  // console.log("hey");
   let v = document.querySelector(".version");
   v.style.display = "block";
 }
