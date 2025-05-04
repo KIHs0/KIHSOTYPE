@@ -26,7 +26,7 @@
 
 .wpm-label {
   font-size: 24px;
-  color: #7f8c8d;
+  color: black;
   margin-left: 5px;
 }
 /* carter  */
@@ -349,7 +349,7 @@ a:hover {
 .logotext span {
   font-weight: bolder;
   font-family: "Monoton";
-  color: yellow;
+  color: #fec20c;
 }
 .logotextsvg {
   width: 3rem;
@@ -414,13 +414,20 @@ a:hover {
     display: none;
   }
   .notification {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: -15rem;
+    background-color: rgba(40, 40, 40, 0.9);
+    color: #ff5555;
+    padding: 3rem 9rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: none;
+    font-size: 0.4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: fit-content;
-    font-size: 0.8rem;
-    animation: borderPulse 7s linear;
+    height: fit-content;
+    animation: borderPulse 1.8s linear;
   }
   .textarea-container div {
     font-size: 1.8rem;
@@ -431,8 +438,7 @@ a:hover {
   }
 
   .carter {
-    font-weight: 100;
-    font-size: 28px;
+    font-size: 17px;
   }
 
   .rightSides {
@@ -440,7 +446,7 @@ a:hover {
   }
 
   body {
-    font-family: "Roboto", "Arial", sans-serif; /* Clean, readable font */
+    font-family: "Roboto";
     font-size: 13px; /* Slightly larger for mobile readability */
     margin: 0;
     padding: 1rem; /* Small padding to prevent edge crowding */
@@ -451,7 +457,7 @@ a:hover {
     overflow-x: hidden; /* Prevent horizontal scrolling */
     text-align: center; /* Center-align text */
     touch-action: manipulation; /* Improve touch responsiveness */
-    line-height: 0.9;
+    line-height: 1.2;
   }
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
@@ -460,7 +466,9 @@ a:hover {
   .headerContainer .leftSides .logotext span {
     font-size: 0.6em;
   }
-
+  .headerContainer .rightSides {
+    display: none;
+  }
   .headerContainer .rightSides a {
     display: none;
   }
@@ -485,10 +493,7 @@ a:hover {
   }
 
   .rightSidesMob {
-    display: grid;
-    place-content: center;
-    margin-right: 0;
-    justify-items: center;
+    display: flex;
   }
 
   .rightSidesMob a {
@@ -511,7 +516,7 @@ a:hover {
   }
   .footerMob {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .footerMob .rightfootermob {
@@ -567,20 +572,19 @@ a:hover {
   padding: 1.7rem 1rem;
   border-radius: 8px;
   font-weight: bold;
-  position: relative;
+  position: absolute;
+  right: 0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   display: none;
   width: fit-content;
   height: fit-content;
-  animation: borderPulse 0.8s linear;
+  animation: borderPulse 1.8s linear;
 }
 
 @keyframes borderPulse {
   0% {
-    transition: all 5s ease;
+    transition: all 1s ease;
     transform: scale(1);
-  }
-  50% {
   }
   100% {
     transition: transform 4.5s ease-out, opacity 3.5s ease-out;
