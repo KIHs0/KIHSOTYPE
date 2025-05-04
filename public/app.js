@@ -11,18 +11,38 @@ let backspaceCount = 0;
 // how you render
 
 const rendering = async () => {
-  xyz();
+  try {
+    xyz(); // Assuming this is your initialization function
 
-  userInput.value = "";
-  const res = await fetch(
-    "https://api.quotable.io/quotes/random?minLength=220&maxLength=300"
-  );
-  if (!res) {
-    rendering();
+    userInput.value = "";
+    const res = await fetch(
+      "https://api.quotable.io/quotes/random?minLength=220&maxLength=300",
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    if (!data || !data[0] || !data[0].content) {
+      throw new Error("Invalid quote data received");
+    }
+
+    quote = data[0].content;
+    // Rest of your rendering logic
+  } catch (error) {
+    console.error("Failed to fetch quote:", error);
+    // Fallback to a default quote or retry
+    quote = "The quick brown fox jumps over the lazy dog. ".repeat(5);
+    // Or you could retry:
+    // setTimeout(rendering, 2000);
   }
-  const data = await res.json();
-  quote = data[0].content;
-
   // now the quote to be changed in an array
 
   const words = quote
