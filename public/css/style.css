@@ -85,14 +85,12 @@
 /* carter */
 
 html {
-  /* scroll-behavior: auto !important; */
   overflow: hidden;
   height: 100%;
   cursor: none;
 }
 body {
   cursor: none;
-  /* cursor: none; */
   font-size: 1rem;
   line-height: 1.5;
   width: 100vw;
@@ -100,7 +98,7 @@ body {
   min-height: 35vh;
   max-height: 1200px;
   background: #191a1b;
-  color: gray;
+  color: #333333c4;
   text-align: center;
   padding: 0.6rem;
   font-family: "Roboto ";
@@ -409,12 +407,14 @@ a:hover {
 }
 
 @media (max-width: 400px) {
+  #particles-js {
+    background: gold;
+  }
   .sss {
     display: none;
   }
-  .space {
-    margin-left: -1rem;
-  }
+  /* .space { */
+  /* } */
   .notification {
     display: flex;
     justify-content: center;
@@ -423,6 +423,9 @@ a:hover {
     width: fit-content;
     font-size: 0.8rem;
     animation: borderPulse 7s linear;
+  }
+  .textarea-container div {
+    font-size: 1.8rem;
   }
   .quote-container letter {
     font-size: 1.4rem;
@@ -437,9 +440,24 @@ a:hover {
   .rightSides {
     display: none;
   }
+
   body {
-    width: 100%; /* Full width on small screens */
-    padding: 10px; /* Smaller padding */
+    font-family: "Roboto", "Arial", sans-serif; /* Clean, readable font */
+    font-size: 18px; /* Slightly larger for mobile readability */
+    line-height: 1.5; /* Good spacing between lines */
+    margin: 0;
+    padding: 10px; /* Small padding to prevent edge crowding */
+    max-width: 400px; /* Restrict width for small screens */
+    width: 100%; /* Ensure it takes full available width */
+    min-height: 100vh; /* Full viewport height */
+    color: #333333c4; /* Dark text for contrast */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically (optional) */
+    text-align: center; /* Center-align text */
+    touch-action: manipulation; /* Improve touch responsiveness */
   }
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
