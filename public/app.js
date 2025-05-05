@@ -17,9 +17,7 @@ const rendering = async () => {
   const res = await fetch(
     "https://api.quotable.io/quotes/random?minLength=220&maxLength=300"
   );
-  if (!res) {
-    rendering();
-  }
+
   const data = await res.json();
   quote = data[0].content;
 
