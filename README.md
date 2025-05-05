@@ -7,6 +7,11 @@
   ![License](https://img.shields.io/badge/License-MIT-blue)
 </div>
 
+![image](https://github.com/user-attachments/assets/3c73d7d7-f978-4403-af3b-e88cca3ae150)
+🔗 **Live Demo:** https://kihsotype.onrender.com
+
+
+
 ## 📌 Overview
 Minimalist typing speed tester using MongoDB, Express, Node.js with Vanilla JS frontend. No React - pure DOM manipulation.
 
