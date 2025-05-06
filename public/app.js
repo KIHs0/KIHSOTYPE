@@ -18,7 +18,6 @@ const rendering = async () => {
     "https://api.quotable.io/quotes/random?minLength=220&maxLength=300"
   );
   const data = await res.json();
-  data = "";
   if (!data || !res) {
     quote = "The quick Brown fox Jumps over the Dog".repeat(5);
     console.log(quote);
