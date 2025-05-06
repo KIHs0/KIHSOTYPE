@@ -65,7 +65,7 @@ KIHSOTYPE/
 │ ├── style.css # Stylesheet
 │ └── script.js # Game logic
 ├── routes/ # Express route handlers
-├── models/ # Mongoose schemas (if used)
+├── models/ # Mongoose schemas 
 ├── server.js # Express server entry point
 ├── .env # Environment variables
 └── README.md # This file
