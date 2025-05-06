@@ -12,17 +12,18 @@ let backspaceCount = 0;
 
 const rendering = async () => {
   xyz();
-
   userInput.value = "";
-  const res = await fetch(
-    "https://api.quotable.io/quotes/random?minLength=220&maxLength=300"
-  );
-  const data = await res.json();
-  if (!data || !res) {
-    quote = "The quick Brown fox Jumps over the Dog".repeat(5);
-  } else {
-    quote = data[0].content;
-  }
+
+  // const res = await fetch(
+  //   "https://api.quotable.io/quotes/random?minLength=220&maxLength=300"
+  // );
+  // const data = await res.json();
+  // if (!data || !res) {
+  //   quote = "The quick Brown fox Jumps over the Dog".repeat(5);
+  // } else {
+  //   quote = data[0].content;
+  // }
+  quote = "The quick Brown fox Jumps over the Dog".repeat(5);
 
   // now the quote to be changed in an array
 
