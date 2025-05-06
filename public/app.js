@@ -20,7 +20,6 @@ const rendering = async () => {
   const data = await res.json();
   if (!data || !res) {
     quote = "The quick Brown fox Jumps over the Dog".repeat(5);
-    console.log(quote);
   } else {
     quote = data[0].content;
   }
