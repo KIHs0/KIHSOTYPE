@@ -17,13 +17,15 @@ const rendering = async () => {
   const res = await fetch(
     "https://api.quotable.io/quotes/random?minLength=220&maxLength=300"
   );
-
   const data = await res.json();
-  quote = data[0].content;
-
-  if (!quote) {
+  data = "";
+  if (!data || !res) {
     quote = "The quick Brown fox Jumps over the Dog".repeat(5);
+    console.log(quote);
+  } else {
+    quote = data[0].content;
   }
+
   // now the quote to be changed in an array
 
   const words = quote
