@@ -1,8 +1,14 @@
 const express = require("express");
 const app = express();
+const https = require("https");
+const agent = new https.Agent({ rejectUnauthorized: false });
+
+const axios = require("axios");
+const cors = require("cors");
+app.use(cors());
+
 //----------setting  up Paths
 const path = require("path");
-
 const favicon = require("serve-favicon");
 app.use(favicon(path.join(__dirname, "public", "favicons2", "favicon.ico")));
 
@@ -32,7 +38,21 @@ const sessionObtained = {
 const flash = require("express-flash");
 app.use(session(sessionObtained));
 app.use(flash());
+app.get("/api/random-quote", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://api.quotable.io/quotes/random?minLength=200&maxLength=300",
+      { httpsAgent: agent }
+    );
 
+    const quote = response.data[0]; // Get the first quote from the response
+    // Send quote data to frontend
+    res.json(quote);
+  } catch (error) {
+    console.error("Error fetching the quote:", error);
+    res.status(500).send("Failed to fetch quote");
+  }
+});
 //-------------------server Listening
 const port = 6060;
 app.listen(port, (req, res) => {
