@@ -406,7 +406,7 @@ a:hover {
   fill: yellow;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   #particles-js {
     background: gold;
   }
@@ -542,7 +542,7 @@ a:hover {
 
 /*  for mobile */
 
-@media (min-width: 400px) {
+@media (min-width: 450px) {
   /* right side mob header */
   .rightSidesMob {
     display: none;
