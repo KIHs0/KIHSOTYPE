@@ -141,7 +141,7 @@
   <div class="rightSides">
     <!-- Backspacewarns to user -->
 
-    <a href=""
+    <a href="/notify"
       ><i class="icons">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +158,8 @@
         ><em><strong>N</strong>otify</em></span
       ></a
     >
-    <a href=""
+    <%if(!currUser) {%>
+    <a href="/signup"
       ><i class="icons">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -178,6 +179,9 @@
         ><em><strong>L</strong>ogin</em></span
       ></a
     >
+    <%} else{%>
+    <a href="/logout">Logout</a>
+    <%}%>
   </div>
 
   <!-- fr mob header -->

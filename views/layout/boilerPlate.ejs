@@ -20,7 +20,8 @@
   </head>
   <body>
     <header><%-include('../include/header.ejs')%></header>
-    <%-include('../include/output.ejs')%> <%- body %>
+    <%-include('../include/output.ejs')%> <%-include('../include/flash.ejs')%>
+    <%- body %>
     <footer><%-include('../include/footer.ejs')%></footer>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"

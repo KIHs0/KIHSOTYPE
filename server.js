@@ -1,4 +1,8 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/userSchema");
 const app = express();
 const https = require("https");
 const agent = new https.Agent({ rejectUnauthorized: false });
@@ -26,18 +30,26 @@ app.engine("ejs", engine);
 app.set("view engine", "ejs");
 //---------------router Settings
 const router = require("./routes/routesFst");
-app.use(router);
+const router2 = require("./routes/routesUSer");
 
 //session
+const cookieParser = require("cookie-parser");
+app.use(cookieParser("mysecretCode"));
 const session = require("express-session");
 const sessionObtained = {
   secret: "mysecretCode",
   resave: false,
   saveUninitialized: true,
 };
-const flash = require("express-flash");
 app.use(session(sessionObtained));
+const flash = require("express-flash");
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.get("/api/random-quote", async (req, res) => {
   try {
     const response = await axios.get(
@@ -53,12 +65,25 @@ app.get("/api/random-quote", async (req, res) => {
     res.status(500).send("Failed to fetch quote");
   }
 });
+app.use((req, res, next) => {
+  res.locals.successMsg = req.flash("success");
+  res.locals.currUser = req.user;
+  next();
+});
+app.use(router);
+app.use(router2);
 //-------------------server Listening
 const port = 6060;
+
+async function main() {
+  mongoose.connect("mongodb://127.0.0.1:27017/kihsotype");
+}
+main()
+  .then((res) => {
+    let ressss = "done database connecting🚀";
+    console.log(ressss);
+  })
+  .catch((e) => console.log("sth got wrong"));
 app.listen(port, (req, res) => {
   console.log(`server at ${port} is on `);
-});
-app.get("/favicon.ico", (req, res) => {
-  console.log("at route faviicon");
-  res.sendFile(path.join(__dirname, "public", "favicons2", "favicon.ico"));
 });
