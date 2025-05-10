@@ -72,6 +72,9 @@ app.use((req, res, next) => {
 });
 app.use(router);
 app.use(router2);
+app.get("/try", (req, res) => {
+  res.render("./mainEjs/try.ejs");
+});
 //-------------------server Listening
 const port = 6060;
 

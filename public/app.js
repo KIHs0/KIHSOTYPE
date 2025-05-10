@@ -9,6 +9,11 @@ let mistakes = 0;
 let backspaceCount = 0;
 
 // how you render
+let dop = document.querySelector(".dp");
+let iconsAa = document.querySelector(".iconsAa");
+function dp(icon) {
+  dop.style.display = dop.style.display === "none" ? "block" : "none";
+}
 
 const rendering = async () => {
   xyz();
@@ -323,3 +328,18 @@ function version() {
 
 // initial setup's
 rendering();
+let setting = document.querySelector(".settings");
+let hawa = document.querySelector(".hawa");
+setting.addEventListener("click", (req, res) => {
+  if (hawa.style.display === "none") {
+    hawa.style.display = "block";
+  } else {
+    hawa.style.display = "none";
+  }
+});
+
+function dark(icon) {
+  document.body.classList.toggle("dark-theme");
+  icon.classList.toggle("bi-moon-fill");
+  icon.classList.toggle("bi-brightness-alt-high-fill");
+}

@@ -62,8 +62,8 @@
       </span></a
     >
     <div class="leftsidesEnd">
-      <a href="/willreach"
-        ><i class="icons"
+      <a class="settings">
+        <i class="icons"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -80,8 +80,29 @@
             /></svg></i
         ><span
           ><em><strong>S</strong>ettings</em></span
-        ></a
-      >
+        >
+      </a>
+      <div class="hawa">
+        <div class="others" tabindex="0">
+          <i
+            class="bi bi-moon-fill"
+            onclick="dark(this)"
+            tabindex="0"
+            style="--position: 1"
+          >
+          </i>
+        </div>
+        <div class="others" tabindex="0">
+          <i
+            class="bi-brightness-alt-high-fill"
+            onclick="dark(this)"
+            tabindex="0"
+            style="--position: 3"
+          >
+          </i>
+        </div>
+      </div>
+
       <a href="/willreach"
         ><i class="icons"
           ><svg
@@ -97,10 +118,10 @@
             /></svg></i
         ><span
           ><em><strong>L</strong>eaderboard</em></span
-        ></a
-      >
-      <a href="/willreach">
-        <i class="icons">
+        >
+      </a>
+      <a>
+        <i class="iconsAa" onclick="dp(this)">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -116,26 +137,6 @@
           ><em><strong>T</strong>ext</em></span
         >
       </a>
-      <a href="/willreach"
-        ><i class="icons">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-file-person"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
-            />
-            <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-          </svg>
-        </i>
-        <span
-          ><em><strong>P</strong>ersonal</em></span
-        ></a
-      >
     </div>
   </div>
   <div class="rightSides">
@@ -180,7 +181,30 @@
       ></a
     >
     <%} else{%>
-    <a href="/logout">Logout</a>
+    <a href="/logout"
+      ><i class="icons">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-box-arrow-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+          />
+        </svg>
+      </i>
+      <span
+        ><em><strong>L</strong>ogout</em></span
+      >
+    </a>
     <%}%>
   </div>
 
@@ -204,7 +228,9 @@
         ><em><strong>N</strong>otify</em></span
       ></a
     >
-    <a href="/willreach"
+    <%if(!currUser) {%>
+
+    <a href="/login"
       ><i class="icons">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -224,5 +250,32 @@
         ><em><strong>L</strong>ogin</em></span
       ></a
     >
+    <%}%> <%if(currUser) {%>
+
+    <a href="/logout"
+      ><i class="icons">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-box-arrow-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+          /></svg
+      ></i>
+      <span
+        ><em><strong>L</strong>ogout</em></span
+      ></a
+    >
+
+    <%}%>
   </div>
 </div>
