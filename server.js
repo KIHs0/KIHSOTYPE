@@ -39,7 +39,7 @@ const router2 = require("./routes/routesUSer");
 
 //session
 const cookieParser = require("cookie-parser");
-app.use(cookieParser("mysecretCode"));
+app.use(cookieParser(process.env.SECRET));
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const store = MongoStore.create({
@@ -94,9 +94,7 @@ app.use((req, res, next) => {
 });
 app.use(router);
 app.use(router2);
-app.get("/try", (req, res) => {
-  res.render("./mainEjs/try.ejs");
-});
+
 //-------------------server Listening
 const port = process.env.port;
 
