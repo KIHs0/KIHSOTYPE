@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+console.log(process.env.MONGODB_URL);
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -34,14 +39,31 @@ const router2 = require("./routes/routesUSer");
 
 //session
 const cookieParser = require("cookie-parser");
-app.use(cookieParser("mysecretCode"));
+app.use(cookieParser(process.env.SECRET));
 const session = require("express-session");
-const sessionObtained = {
-  secret: "mysecretCode",
+const MongoStore = require("connect-mongo");
+const store = MongoStore.create({
+  mongoUrl: process.env.MONGODB_URL,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+store.on("error", () => {
+  console.log("ERROR IN MONGODB_SESSION", err);
+});
+const sessionOptions = {
+  store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
 };
-app.use(session(sessionObtained));
+app.use(session(sessionOptions));
 const flash = require("express-flash");
 app.use(flash());
 app.use(passport.initialize());
@@ -72,14 +94,12 @@ app.use((req, res, next) => {
 });
 app.use(router);
 app.use(router2);
-app.get("/try", (req, res) => {
-  res.render("./mainEjs/try.ejs");
-});
+
 //-------------------server Listening
-const port = 6060;
+const port = process.env.port;
 
 async function main() {
-  mongoose.connect("mongodb://127.0.0.1:27017/kihsotype");
+  mongoose.connect(process.env.MONGODB_URL);
 }
 main()
   .then((res) => {
