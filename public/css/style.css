@@ -457,9 +457,6 @@ a:hover {
 }
 
 @media (max-width: 450px) {
-  #particles-js {
-    background: gold;
-  }
   .sss {
     display: none;
   }
@@ -496,7 +493,6 @@ a:hover {
   }
 
   body {
-    font-family: "Roboto";
     font-size: 13px; /* Slightly larger for mobile readability */
     margin: 0;
     padding: 1rem; /* Small padding to prevent edge crowding */
@@ -504,7 +500,7 @@ a:hover {
     width: 100%; /* Ensure it takes full available width */
     min-height: 100vh; /* Full viewport height */
     color: hwb(0 20% 80% / 0.769); /* Dark text for contrast */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    /* overflow-x: hidden; */
     text-align: center; /* Center-align text */
     touch-action: manipulation; /* Improve touch responsiveness */
     line-height: 1.2;
