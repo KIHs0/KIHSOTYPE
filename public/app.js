@@ -186,6 +186,7 @@ function handleTyping() {
     carter.classList.add("idle");
   }, 1000);
 }
+const leveledwords = [];
 
 // how is rect findout
 const checkAval = setInterval(() => {
@@ -205,34 +206,33 @@ const checkAval = setInterval(() => {
       ) {
         // let floatval = arrVal2rrect;
         // let anotherfval = arrValrect;
-        let strval = arr[i].innerText;
-        tomoveup(strval);
+        leveledwords.push(arr[i].innerText.trim());
       }
     }
   }
 }, 300);
 
 // sending rect value to findout char index
-function tomoveup(s) {
-  // console.log("fucntion called");
-  let trackedWords = [];
+// console.log("fucntion called");
+let a = 0;
+let trackedWords = [];
+userInput.addEventListener("input", (e) => {
+  let key = e.target.value;
 
-  userInput.addEventListener("keydown", (e) => {
-    let key = e.key;
+  trackedWords.push(key); // Track the letters being typed
 
-    // if (key.length > 1) return; // Ignore spaces and special keys
+  let joined = trackedWords.join("");
+  let words = joined.split(" ");
 
-    trackedWords.push(key); // Track the letters being typed
-
-    let joined = trackedWords.join("");
-    let words = joined.split(" ");
-
-    if (words.includes(s)) {
-      moveup(trackedWords);
-      trackedWords = []; // Now reset your tracking array
-    }
+  words.map((e) => {
+    leveledwords.map((ex) => {
+      if (e === ex) {
+        leveledwords.slice(0, 1);
+        moveup(trackedWords);
+      }
+    });
   });
-}
+});
 
 // matching char index accordint to rect and transforming
 const moveup = (tw) => {
@@ -243,14 +243,12 @@ const moveup = (tw) => {
     arr.map((e) => {
       let arr4 = [...e.childNodes];
       arr4.map((e) => {
-        tw.map((ex) => {
-          if (
-            (e.innerText === ex && e.classList.contains("success")) ||
-            e.classList.contains("failure")
-          ) {
-            e.classList.add("transform");
-          }
-        });
+        if (
+          e.classList.contains("success") ||
+          e.classList.contains("failure")
+        ) {
+          e.classList.add("transform");
+        }
       });
     });
   }
@@ -281,6 +279,8 @@ textarea.addEventListener("click", (e) => {
 //backspace wala
 const maxBackspacesAllowed = 5; // Adjust as needed
 document.addEventListener("keydown", function (e) {
+  if (e.key == "Backspace") e.preventDefault();
+
   if (e.key === "Backspace") {
     if (backspaceCount >= maxBackspacesAllowed) {
       e.preventDefault(); // Block after limit
