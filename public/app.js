@@ -74,10 +74,10 @@ const xyz = async () => {
     // Update current position based on cursor location
     currentPosition = e.target.selectionStart;
 
-    cq.forEach(async (cq, index) => {
+    cq.forEach((cq, index) => {
       if (index === currentPosition) {
         // Only move cursor when we reach the current typing position
-        await cartemove(cq, index, cq);
+        cartemove(cq, index, cq);
       }
 
       if (cq.innerText === userInputChars[index]) {
@@ -204,8 +204,6 @@ const checkAval = setInterval(() => {
       if (
         arr[i + 1].getBoundingClientRect().y > arr[i].getBoundingClientRect().y
       ) {
-        // let floatval = arrVal2rrect;
-        // let anotherfval = arrValrect;
         leveledwords.push(arr[i].innerText.trim());
       }
     }
@@ -214,7 +212,6 @@ const checkAval = setInterval(() => {
 
 // sending rect value to findout char index
 // console.log("fucntion called");
-let a = 0;
 let trackedWords = [];
 userInput.addEventListener("input", (e) => {
   let key = e.target.value;
@@ -227,8 +224,9 @@ userInput.addEventListener("input", (e) => {
   words.map((e) => {
     leveledwords.map((ex) => {
       if (e === ex) {
-        leveledwords.slice(0, 1);
         moveup(trackedWords);
+        leveledwords.splice(0, 1);
+        words.length = 0;
       }
     });
   });
@@ -278,8 +276,8 @@ textarea.addEventListener("click", (e) => {
 
 //backspace wala
 const maxBackspacesAllowed = 5; // Adjust as needed
-document.addEventListener("keydown", function (e) {
-  if (e.key == "Backspace") e.preventDefault();
+document.addEventListener("input", function (e) {
+  if (e.target.value == "Backspace") e.preventDefault();
 
   if (e.key === "Backspace") {
     if (backspaceCount >= maxBackspacesAllowed) {
