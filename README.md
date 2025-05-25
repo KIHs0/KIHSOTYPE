@@ -86,7 +86,13 @@ KIHSOTYPE/
 
     🔊 Typing sound effects and animations
 ```
-## 🙌 **Author**
+
+## 🙌 Acknowledgements
+
+Thanks to everyone who's inspired me to build in public and push past perfectionism.  
+Drop a ⭐ if you like it!
+
+## ✒️ **Author**
   <div align="center">
   Made with ❤️ -- KIHSO
   </div>
