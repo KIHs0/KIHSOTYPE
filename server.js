@@ -1,8 +1,8 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
+console.log(process.env.MONGODB_URL);
 }
 
-console.log(process.env.MONGODB_URL);
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -38,21 +38,22 @@ const router = require("./routes/routesFst");
 const router2 = require("./routes/routesUSer");
 
 //session
-const cookieParser = require("cookie-parser");
-app.use(cookieParser(process.env.SECRET));
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
-const store = MongoStore.create({
-  mongoUrl: process.env.MONGODB_URL,
-  crypto: {
-    secret: process.env.SECRET,
-  },
-  touchAfter: 24 * 3600,
-});
-store.on("error", () => {
-  console.log("ERROR IN MONGODB_SESSION", err);
-});
-const sessionOptions = {
+  const cookieParser = require("cookie-parser");
+  app.use(cookieParser(process.env.SECRET));
+  const session = require("express-session");
+  const MongoStore = require("connect-mongo");
+  const store = MongoStore.create({
+    mongoUrl: process.env.MONGODB_URL,
+    crypto: {
+      secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600
+  });
+  store.on("error", (err) => {
+    console.log("ERROR IN MONGODB_SESSION : ON STORE CONFIGURATION");
+  });
+  store.on('end',()=>{console.log('session store ended CONNECTED TO MONGODB_SESSION')})
+  const sessionOptions = {
   store,
   secret: process.env.SECRET,
   resave: false,
@@ -96,17 +97,18 @@ app.use(router);
 app.use(router2);
 
 //-------------------server Listening
-const port = process.env.port;
-
-async function main() {
-  mongoose.connect(process.env.MONGODB_URL);
-}
+const port = process.env.PORT;
 main()
-  .then((res) => {
-    let ressss = "done database connecting🚀";
-    console.log(ressss);
-  })
-  .catch((e) => console.log("sth got wrong"));
+    .then((res) => {
+      let ressss = "done database connecting🚀";
+      console.log(ressss);
+    })
+    .catch((e) => console.log("sth got wrong connecting database",e));
+async function main() {
+  await mongoose.connect(process.env.MONGODB_URL);
+// await mongoose.connect("mongodb://127.0.0.1:27017/kihsotype")
+}
+
 app.listen(port, (req, res) => {
   console.log(`server at ${port} is on `);
 });

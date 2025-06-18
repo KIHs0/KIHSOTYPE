@@ -65,6 +65,7 @@ const xyz = async () => {
           count++;
         }
       }
+      console.log(count)
       let uncorrectedErrors = count;
 
       wpm(totalwords, timer, uncorrectedErrors);
@@ -73,8 +74,8 @@ const xyz = async () => {
 
     // Update current position based on cursor location
     currentPosition = e.target.selectionStart;
-
     cq.forEach((cq, index) => {
+
       if (index === currentPosition) {
         // Only move cursor when we reach the current typing position
         cartemove(cq, index, cq);
@@ -92,16 +93,6 @@ const xyz = async () => {
         }
       }
     });
-  });
-
-  // Handle cursor positioning when clicking in the input
-  userInput.addEventListener("click", (e) => {
-    currentPosition = e.target.selectionStart;
-    const characterQuotes = document.querySelector(".quote-container");
-    const cq = Array.from(characterQuotes.querySelectorAll("letter"));
-    if (cq[currentPosition]) {
-      cartemove(cq[currentPosition], currentPosition, cq[currentPosition]);
-    }
   });
 };
 
@@ -159,7 +150,6 @@ function cartemove(char, position, element) {
 
   // Get the position of the current character in the sequence
   const currentChar = allLetters[position];
-
   if (currentChar) {
     // Get the position relative to the quote container
     const containerRect = quoteContainer.getBoundingClientRect();
@@ -186,10 +176,12 @@ function handleTyping() {
     carter.classList.add("idle");
   }, 1000);
 }
-const leveledwords = [];
 
 // how is rect findout
-const checkAval = setInterval(() => {
+const leveledwords = [];
+const checkAval = setInterval((e) => {
+
+  console.log(characters)
   const mytextContainer = document.querySelectorAll(".quote-container .word ");
   if (mytextContainer.length) {
     clearInterval(checkAval);
@@ -208,28 +200,31 @@ const checkAval = setInterval(() => {
       }
     }
   }
+  console.log(leveledwords);
 }, 300);
 
-// sending rect value to findout char index
-// console.log("fucntion called");
+// sending rect value to find out char index
+// console.log("function called");
 let trackedWords = [];
+
+
 userInput.addEventListener("input", (e) => {
-  let key = e.target.value;
 
-  trackedWords.push(key); // Track the letters being typed
+  const quoteContainer = document.querySelector(".quote-container");
+  const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space'))  ;
+      const characters = allLetters[e.target.selectionStart-1];
+      const characters1 = allLetters[e.target.selectionStart];
+      let p = Math.floor(characters.getBoundingClientRect().y)
+      let p1 = Math.floor(characters1.getBoundingClientRect().y)
 
-  let joined = trackedWords.join("");
-  let words = joined.split(" ");
 
-  words.map((e) => {
-    leveledwords.map((ex) => {
-      if (e === ex) {
-        moveup(trackedWords);
-        leveledwords.splice(0, 1);
-        words.length = 0;
+
+// if(p1>p) console.log('here you will move up')
+  // console.log(quoteContainer.getBoundingClientRect()) ;
+
+      if (p1 > p ) {
+     moveup()
       }
-    });
-  });
 });
 
 // matching char index accordint to rect and transforming
@@ -275,30 +270,31 @@ textarea.addEventListener("click", (e) => {
 });
 
 //backspace wala
-const maxBackspacesAllowed = 5; // Adjust as needed
-document.addEventListener("input", function (e) {
-  if (e.target.value == "Backspace") e.preventDefault();
+const maxBackspacesAllowed = 5;
 
+document.addEventListener("keydown", function (e) {
   if (e.key === "Backspace") {
     if (backspaceCount >= maxBackspacesAllowed) {
-      e.preventDefault(); // Block after limit
-      document.querySelector(".notification").style.display = "block";
+      e.preventDefault(); // Block further backspaces
+      const notification = document.querySelector(".notification");
+      notification.style.display = "block";
+
       setTimeout(() => {
-        document.querySelector(".notification").style.display = "none";
+        notification.style.display = "none";
       }, 1000);
-      if (backspaceCount > 5) {
-        e.preventDefault();
-        return;
-      }
+
+      // Reset counter after 5 seconds
       setTimeout(() => {
         backspaceCount = 0;
       }, 5000);
     } else {
       backspaceCount++;
-      // console.log(`Backspaces left: ${maxBackspacesAllowed - backspaceCount}`);
+      // Optionally log remaining count
+      // console.log(`Backspaces used: ${backspaceCount}`);
     }
   }
 });
+
 
 // sword gsap svg use
 document.addEventListener("mousemove", (e) => {
@@ -321,7 +317,7 @@ function thanks() {
 function version() {
   // console.log("hey");
   let v = document.querySelector(".version");
-  v.style.display = "block";
+  v.style.display = v.style.display === "none" ? "block" : "none";
 }
 
 // initial setup's
