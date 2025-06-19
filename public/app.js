@@ -78,7 +78,7 @@ const xyz = async () => {
 
       if (index === currentPosition) {
         // Only move cursor when we reach the current typing position
-        cartemove(cq, index, cq);
+        cartemove(index);
       }
 
       if (cq.innerText === userInputChars[index]) {
@@ -95,8 +95,9 @@ const xyz = async () => {
     });
   });
 };
-
 // above two fx are Main(). EG: Workstation
+
+
 function wpm(tw, timer, ucE) {
   let grossWpm = (tw / 5 / 60) * 100;
   let netWpm = grossWpm - ucE / 60;
@@ -109,7 +110,6 @@ function wpm(tw, timer, ucE) {
   // console.log(finalnetWpm);
   updateWPMDisplay(finalnetWpm); // Call this with your actual WPM value
 }
-
 // above fx works first as user completed the game
 // downward fx works to show user their speed with better UI/UX
 function updateWPMDisplay(netWpm) {
@@ -127,8 +127,8 @@ function updateWPMDisplay(netWpm) {
     // Ease-out function for smoother animation
     const easedProgress = 1 - Math.pow(1 - progress, 2);
 
-    const currentValue = Math.floor(easedProgress * netWpm);
-    wpmElement.textContent = currentValue;
+    Math.floor(easedProgress * netWpm);
+    wpmElement.textContent =    Math.floor(easedProgress * netWpm);
 
     if (progress < 1) {
       requestAnimationFrame(animateWPM);
@@ -139,24 +139,20 @@ function updateWPMDisplay(netWpm) {
 }
 
 // -------------------------carter
-function cartemove(char, position, element) {
+function cartemove(position) {
   // Add this to your input event listener
   handleTyping();
   let carter = document.querySelector(".carter");
 
-  // Calculate cumulative position by getting the position of all previous characters
+  // Calculating  cumulative position by getting the position of all previous characters
   const quoteContainer = document.querySelector(".quote-container");
   const allLetters = Array.from(quoteContainer.querySelectorAll("letter"));
 
-  // Get the position of the current character in the sequence
   const currentChar = allLetters[position];
   if (currentChar) {
-    // Get the position relative to the quote container
     const containerRect = quoteContainer.getBoundingClientRect();
     const charRect = currentChar.getBoundingClientRect();
-    // console.log(charRect.left, containerRect.left);
-    // console.log(charRect.top, containerRect.top);
-    // Position the cursor at the end of the current character
+
     carter.style.position = "absolute";
     carter.style.left = `${charRect.left - containerRect.left}px`;
     carter.style.top = `${charRect.top - containerRect.top}px`;
@@ -177,58 +173,38 @@ function handleTyping() {
   }, 1000);
 }
 
-// how is rect findout
-const leveledwords = [];
-const checkAval = setInterval((e) => {
-
-  console.log(characters)
-  const mytextContainer = document.querySelectorAll(".quote-container .word ");
-  if (mytextContainer.length) {
-    clearInterval(checkAval);
-    let arr = [...mytextContainer];
-    // console.log(arr.length);
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i + 1] === undefined) {
-        break;
-      }
-      let arrValrect = arr[i].getBoundingClientRect().y;
-      let arrVal2rrect = arr[i + 1].getBoundingClientRect().y;
-      if (
-        arr[i + 1].getBoundingClientRect().y > arr[i].getBoundingClientRect().y
-      ) {
-        leveledwords.push(arr[i].innerText.trim());
-      }
-    }
-  }
-  console.log(leveledwords);
-}, 300);
-
-// sending rect value to find out char index
-// console.log("function called");
-let trackedWords = [];
-
+(()=>{
 
 userInput.addEventListener("input", (e) => {
-
-  const quoteContainer = document.querySelector(".quote-container");
-  const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space'))  ;
-      const characters = allLetters[e.target.selectionStart-1];
-      const characters1 = allLetters[e.target.selectionStart];
-      let p = Math.floor(characters.getBoundingClientRect().y)
-      let p1 = Math.floor(characters1.getBoundingClientRect().y)
+  try{
 
 
 
-// if(p1>p) console.log('here you will move up')
+  const quoteContainer = document.querySelector(".quote-container")
+  const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure')  || e.classList.contains('failure'))  ;
+  const characters = allLetters[e.target.selectionStart-1];
+
+  let characters1 = allLetters[e.target.selectionStart];
+
+
+  let p = Math.floor(characters.getBoundingClientRect().y)
+  let p1 = Math.floor(characters1.getBoundingClientRect().y)
+
+
+  if (p1 > p ) {
+    moveup()
+  }
+  // if(p1>p) console.log('here you will move up')
   // console.log(quoteContainer.getBoundingClientRect()) ;
 
-      if (p1 > p ) {
-     moveup()
-      }
+  }
+  catch(e){}
 });
 
-// matching char index accordint to rect and transforming
-const moveup = (tw) => {
+})()
+
+// matching char index accordingg to rect and transforming
+const moveup = () => {
   const mytextContainer = document.querySelectorAll(".quote-container .word ");
   if (mytextContainer.length) {
     let arr = [...mytextContainer];
@@ -247,31 +223,25 @@ const moveup = (tw) => {
   }
 };
 
-// basic setup's
-window.onload = () => {
-  userInput.value = "";
-};
 
-document.addEventListener("keydown", (e) => {
-  if (e.ctrlKey && (e.key === "c" || e.key === "v" || e.key === "x")) {
-    e.preventDefault();
-  }
-});
 
-document.addEventListener("keydown", (e) => {
-  if (e.ctrlKey && (e.key === "r" || e.key === "Alt")) {
-    location.reload();
-  }
-});
 
-// user focus to on
-textarea.addEventListener("click", (e) => {
-  userInput.focus();
-});
 
-//backspace wala
+
+
+
+
+
+
+
+
+
+
+
+
+
+// BACKSPACE fx
 const maxBackspacesAllowed = 5;
-
 document.addEventListener("keydown", function (e) {
   if (e.key === "Backspace") {
     if (backspaceCount >= maxBackspacesAllowed) {
@@ -294,34 +264,46 @@ document.addEventListener("keydown", function (e) {
     }
   }
 });
-
-
-// sword gsap svg use
+//  GSAP SWORD svg use
 document.addEventListener("mousemove", (e) => {
   gsap.set(".sss", {
     x: e.x,
     y: e.y,
   });
 });
-// refresh icon btn
-const refrehtbn = document.querySelector(".bi-arrow-clockwise");
-refrehtbn.addEventListener("click", () => {
-  rendering();
-  location.reload();
-});
-function thanks() {
-  let thanks = document.getElementById("thanks");
-  thanks.style.display = thanks.style.display === "none" ? "block" : "none";
-}
-
+// DOM fx
 function version() {
   // console.log("hey");
   let v = document.querySelector(".version");
   v.style.display = v.style.display === "none" ? "block" : "none";
 }
-
-// initial setup's
-rendering();
+function dark(icon) {
+  document.body.classList.toggle("dark-theme");
+  icon.classList.toggle("bi-moon-fill");
+  icon.classList.toggle("bi-brightness-alt-high-fill");
+}
+textarea.addEventListener("click", (e) => {
+  userInput.focus();
+});
+function thanks() {
+  let thanks = document.getElementById("thanks");
+  thanks.style.display = thanks.style.display === "none" ? "block" : "none";
+}
+const refrehtbn = document.querySelector(".bi-arrow-clockwise");
+refrehtbn.addEventListener("click", () => {
+  rendering();
+  location.reload();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && (e.key === "c" || e.key === "v" || e.key === "x")) {
+    e.preventDefault();
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && (e.key === "r" || e.key === "Alt")) {
+    location.reload();
+  }
+});
 let setting = document.querySelector(".settings");
 let hawa = document.querySelector(".hawa");
 setting.addEventListener("click", (req, res) => {
@@ -331,9 +313,9 @@ setting.addEventListener("click", (req, res) => {
     hawa.style.display = "none";
   }
 });
+// initial setup's
+rendering();
+window.onload = () => {
+  userInput.value = "";
+};
 
-function dark(icon) {
-  document.body.classList.toggle("dark-theme");
-  icon.classList.toggle("bi-moon-fill");
-  icon.classList.toggle("bi-brightness-alt-high-fill");
-}
