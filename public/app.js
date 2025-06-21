@@ -178,11 +178,9 @@ function handleTyping() {
 userInput.addEventListener("input", (e) => {
   try{
 
-
-
   const quoteContainer = document.querySelector(".quote-container")
   const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure')  || e.classList.contains('failure'))  ;
-  const characters = allLetters[e.target.selectionStart-1];
+  const characters = allLetters[e.target.selectionStart];
 
   let characters1 = allLetters[e.target.selectionStart];
 
@@ -200,17 +198,18 @@ userInput.addEventListener("input", (e) => {
   }
   catch(e){}
 });
-
 })()
 
 // matching char index accordingg to rect and transforming
 const moveup = () => {
   const mytextContainer = document.querySelectorAll(".quote-container .word ");
+
   if (mytextContainer.length) {
     let arr = [...mytextContainer];
 
     arr.map((e) => {
-      let arr4 = [...e.childNodes];
+      let arr4 = [...e.childNodes].filter(e=>e.classList.contains('success') || e.classList.contains('failure') || e.classList.contains('space'));
+
       arr4.map((e) => {
         if (
           e.classList.contains("success") ||
@@ -222,23 +221,6 @@ const moveup = () => {
     });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // BACKSPACE fx
 const maxBackspacesAllowed = 5;
