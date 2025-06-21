@@ -94,7 +94,6 @@ body {
   color: #333333c4;
   text-align: center;
   padding: 0.6rem;
-  font-family: "Roboto ";
 }
 /* Default Light Theme */
 
@@ -196,13 +195,11 @@ body.dark-theme .navbar {
   border: none;
   outline: none;
   color: beige;
-  font-family: "Roboto";
   animation: borderinset 0.3s infinite;
 }
 .refresh span {
   font-weight: 900;
   color: beige;
-  font-family: "Roboto";
 }
 .refresh em {
   padding: 1rem;
@@ -292,8 +289,8 @@ svg {
 
 .transform {
   display: none;
-  transform: translateY(-1000px); /* Starts 20px lower */
-  transition: all 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+  transform: translateY(-1200px); /* Starts 20px lower */
+  transition: all 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
 }
 
 /* footer CSS ^ */
@@ -327,7 +324,7 @@ svg {
   color: rgba(255, 0, 0, 0.85);
 }
 input {
-  opacity: 1;
+  opacity: 0;
 }
 
 .space {
@@ -336,10 +333,9 @@ input {
 }
 
 letter {
-  font-family: "JetBrains Mono";
   display: inline-block;
   /* animation: fadeIn 0.3s ease-out; */
-  margin-left: 0.3px;
+  margin-left: 0.1em;
 }
 a:hover {
   cursor: none;
@@ -399,7 +395,6 @@ a:hover {
 
 .logotext span {
   font-weight: bolder;
-  font-family: "Monoton";
   color: #fec20c;
 }
 .logotextsvg {

@@ -180,9 +180,9 @@ userInput.addEventListener("input", (e) => {
 
   const quoteContainer = document.querySelector(".quote-container")
   const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure')  || e.classList.contains('failure'))  ;
-  const characters = allLetters[e.target.selectionStart];
+  const characters = allLetters[e.target.selectionStart-2];
 
-  let characters1 = allLetters[e.target.selectionStart];
+  let characters1 = allLetters[e.target.selectionStart-1];
 
 
   let p = Math.floor(characters.getBoundingClientRect().y)
