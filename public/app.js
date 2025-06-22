@@ -7,6 +7,10 @@ const userInput = document.querySelector(".input-box");
 let quote = "";
 let mistakes = 0;
 let backspaceCount = 0;
+let totalwords ;
+let count=+0;
+let timer = 30;
+let data =[]
 
 // how you render
 let dop = document.querySelector(".dp");
@@ -49,38 +53,26 @@ ${words}
 };
 const xyz = async () => {
   let currentPosition = 0; // Track current cursor position globally
-
   userInput.addEventListener("input", (e) => {
     const characterQuotes = document.querySelector(".quote-container");
     let cq = Array.from(characterQuotes.querySelectorAll("letter"));
     const userInputChars = Array.from(e.target.value);
-
-    if (cq.length - 1 === userInputChars.length) {
-      // console.log("thanks for completing");
-      let totalwords = userInputChars.length;
-      let timer = 30;
-      let count = 0;
+    totalwords = userInputChars.length;
       for (arr of cq) {
-        if (arr.classList.contains("failure")) {
-          count++;
-        }
-      }
-      console.log(count)
-      let uncorrectedErrors = count;
-
-      wpm(totalwords, timer, uncorrectedErrors);
+      if (arr.classList.contains("failure")) {
+        count++;
+      }}
+    if (cq.length - 1 === userInputChars.length) {
+      wpm(totalwords, timer, count);
       // return rendering();
     }
-
     // Update current position based on cursor location
     currentPosition = e.target.selectionStart;
     cq.forEach((cq, index) => {
-
       if (index === currentPosition) {
         // Only move cursor when we reach the current typing position
         cartemove(index);
       }
-
       if (cq.innerText === userInputChars[index]) {
         cq.classList.add("success");
         cq.classList.remove("failure");
@@ -96,15 +88,16 @@ const xyz = async () => {
   });
 };
 // above two fx are Main(). EG: Workstation
-
-
+function addarr(totalwords,timer,count){
+  let grossWpm = (totalwords / 5 / 60) * 100;
+  data.push(parseInt(grossWpm))
+  console.log(data)
+}
 function wpm(tw, timer, ucE) {
   let grossWpm = (tw / 5 / 60) * 100;
-  let netWpm = grossWpm - ucE / 60;
-  let finalnetWpm = parseInt(netWpm);
-  // console.log({ tw, timer, ucE });
-  let wpmContainer = document.querySelector(".wpm-container");
-  wpmContainer.style.display = "block";
+  let finalnetWpm = parseInt(grossWpm);
+  let chartwrapper = document.querySelector(".chart-wrapper");
+  chartwrapper.style.display = "flex";
 
   // Example usage:
   // console.log(finalnetWpm);
@@ -113,13 +106,15 @@ function wpm(tw, timer, ucE) {
 // above fx works first as user completed the game
 // downward fx works to show user their speed with better UI/UX
 function updateWPMDisplay(netWpm) {
+  drawChart();
+  window.addEventListener('resize', () => {
+    drawChart();
+  });
   const wpmElement = document.querySelector(".wpm-value");
-  const duration = 2000; // Animation duration in milliseconds
+  const duration = 1000; // Animation duration in milliseconds
   const startTime = performance.now();
   const startValue = 0;
-
   requestAnimationFrame(animateWPM);
-
   function animateWPM(currentTime) {
     const elapsedTime = currentTime - startTime;
     const progress = Math.min(elapsedTime / duration, 1);
@@ -134,6 +129,69 @@ function updateWPMDisplay(netWpm) {
       requestAnimationFrame(animateWPM);
     } else {
       wpmElement.textContent = netWpm; // Ensure final value is exact
+    }
+  }
+  textarea.textContent = "";
+  function drawChart() {
+    const svg = document.getElementById("lineChart");
+    const chartContainer = document.getElementById("chartContainer");
+    svg.innerHTML = "";
+
+    const height = chartContainer.clientHeight;
+    const padding = 90;
+    const pointSpacing = 120;
+    const width = padding * 2 + (data.length - 1) * pointSpacing;
+    svg.setAttribute("width", width);
+    chartContainer.style.minWidth = width + "px";
+
+    const minData = 0;
+    const maxDataRaw = Math.max(...data);
+    const maxData = Math.ceil(maxDataRaw / 50) * 50;
+    const range = maxData - minData;
+
+    drawYAxis(minData, maxData);
+
+    const points = data.map((val, i) => {
+      const x = padding + i * pointSpacing;
+      const y = height - padding - ((val - minData) / range) * (height - 1 * padding);
+      return [x, y];
+    });
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    const d = points.map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`)).join(" ");
+    path.setAttribute("d", d);
+    path.setAttribute("class", "line");
+    svg.appendChild(path);
+
+    // Animate line
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = length;
+    path.style.strokeDashoffset = length;
+    path.getBoundingClientRect();
+    path.style.transition = "stroke-dashoffset 1.5s ease-out";
+    path.style.strokeDashoffset = "0";
+
+    // Add dots
+    points.forEach(([x, y]) => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", x);
+      circle.setAttribute("cy", y);
+      circle.setAttribute("r", window.innerWidth <= 600 ? 3 : 5);
+      circle.setAttribute("class", "dot");
+      svg.appendChild(circle);
+    });
+  }
+  function drawYAxis(minVal, maxVal) {
+    const yAxis = document.getElementById("yAxisLabels");
+    yAxis.innerHTML = "";
+
+    const steps = 1;
+    const stepSize = (maxVal - minVal) / steps;
+
+    for (let i = steps; i >= 0; i--) {
+      const label = document.createElement("div");
+      label.innerText = Math.round(minVal + i * stepSize);
+      yAxis.appendChild(label);
     }
   }
 }
@@ -177,7 +235,6 @@ function handleTyping() {
 
 userInput.addEventListener("input", (e) => {
   try{
-
   const quoteContainer = document.querySelector(".quote-container")
   const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure')  || e.classList.contains('failure'))  ;
   const characters = allLetters[e.target.selectionStart-2];
@@ -190,6 +247,7 @@ userInput.addEventListener("input", (e) => {
 
 
   if (p1 > p ) {
+    addarr(totalwords,timer,count)
     moveup()
   }
   // if(p1>p) console.log('here you will move up')

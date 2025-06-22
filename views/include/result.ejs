@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responsive WPM Line Chart</title>
+    <style>
+
+        .chart-wrapper {
+            max-width: 100%;
+            position:absolute;
+            display: none;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            z-index:10000;
+            width: 95vw;
+        }
+
+        .y-axis {
+            width: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 16px;
+            color: #0ff;
+            height: 600px;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .y-axis div {
+            height: 100px;
+            line-height: 100px;
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .chart-scroll {
+            overflow-x: auto;
+            border-left: 2px solid #0ff;
+            border-bottom: 2px solid #0ff;
+            background: #191a1b;
+            flex-grow: 1;
+            max-width: calc(100vw - 120px);
+            /* leave space for left padding and y-axis */
+            padding-bottom: 10px;
+        }
+
+        .chart-container {
+            height: 500px;
+            min-width: 900px;
+            padding-top: 20px;
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+
+        .svgs {
+            height: 100%;
+            display: block;
+        }
+
+        .line {
+            fill: none;
+            stroke: #0ff;
+            stroke-width: 6;
+        }
+
+        .dot {
+            stroke: #000;
+            stroke-width: 0.1;
+            transition: r 0.3s;
+            cursor: pointer;
+        }
+
+        /* Smaller sizes on narrow screens */
+        @media (max-width: 600px) {
+            body {
+                padding: 40px 10px 20px 40px;
+            }
+
+            .y-axis {
+                width: 30px;
+                font-size: 10px;
+                height: 350px;
+            }
+
+            .y-axis div {
+                height: 70px;
+                line-height: 70px;
+                padding-right: 3px;
+            }
+
+            .chart-container {
+                height: 350px;
+                min-width: 600px;
+                padding-top: 15px;
+                padding-left: 15px;
+            }
+
+            .svgs{
+                height: 100%;
+            }
+
+            .dot {
+                r: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="chart-wrapper">
+
+    <div class="y-axis" id="yAxisLabels"></div>
+    <div class="chart-scroll">
+        <span class="wpm-value" style="color:yellow">0</span>
+        <span class="wpm-label"  style="color: white">WPM</span>
+        <div class="chart-container" id="chartContainer">
+            <svg id="lineChart" class="svgs"></svg>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
