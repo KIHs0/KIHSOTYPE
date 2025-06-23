@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,100;1,300&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -81,10 +80,9 @@ html {
 body {
   overflow-x: hidden;
   overflow-y: hidden;
-
   cursor: none;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   width: 100vw;
   height: 100vh;
   min-height: 35vh;
@@ -93,20 +91,33 @@ body {
   color: #333333c4;
   text-align: center;
   padding: 0.6rem;
+  font-family: "Lato" ,"Lato", sans-serif,"Roboto Mono", monospace,Arail;
+  font-weight: 399;
+  font-style: normal;
 }
 /* Default Light Theme */
 
 /* Dark Theme */
 body.dark-theme {
-  /* background-color: #121212; */
-  color: gray;
-  background-color: #2c3e50;
+  color: black;
+  background-color: white;
+}
+body.dark-theme .icons svg , body.dark-theme .iconsAa svg {
+fill:black;
+}
+body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
+  color:black;
+
+}
+.bi-moon-fill, .bi-brightness-alt-high-fill
+{
+  cursor:pointer
+
 }
 
+
 /* Optional: change other elements too */
-body.dark-theme .navbar {
-  background-color: #1e1e1e;
-}
+
 
 .settings {
   position: relative;
@@ -261,8 +272,10 @@ svg {
   justify-content: space-between;
   text-align: justify;
   text-transform: capitalize;
+  font-family: "Lato", sans-serif,"Roboto Mono", monospace;
+  font-weight: 990;
+  font-style: normal;
   font-size: 1.3rem;
-  font-family: monospace;
   position: sticky;
 }
 
@@ -327,20 +340,20 @@ input {
 }
 
 .space {
-  opacity: 0.8; /* Make spaces semi-transparent */
-  margin-left: -0.4rem; /* Add horizontal padding */
+  opacity: 0.5; /* Make spaces semi-transparent */
+  margin-left: -0.5rem; /* Add horizontal padding */
 }
 
 letter {
   display: inline-block;
   /* animation: fadeIn 0.3s ease-out; */
-  margin-left: 0.1em;
-}
-a:hover {
-  cursor: none;
-  animation: blink 0.8s infinite;
+  margin-right: 0.01em;
 }
 
+a:hover {
+  cursor: pointer;
+  animation: blink 0.8s infinite;
+}
 @keyframes fadeIn {
   from {
     opacity: 1;
@@ -393,16 +406,14 @@ a:hover {
 }
 
 .logotext span {
-  font-weight: bolder;
   color: #fec20c;
+  text-transform: uppercase;
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+font-size: clamp(1.5rem, 1vw, 2rem);
 }
-.logotextsvg {
-  width: 3rem;
-  animation: logosvg 0.2s linear;
-  opacity: 10;
-  z-index: 1000;
-  fill: yellow;
-}
+
 
 @keyframes logosvg {
   0% {
@@ -476,7 +487,7 @@ a:hover {
   }
   .quote-container letter {
     font-size: 1.4rem;
-    font-weight: bolder;
+
   }
 
   .carter {
@@ -505,7 +516,7 @@ a:hover {
   }
 
   .headerContainer .leftSides .logotext span {
-    font-size: 0.6em;
+    font-size: 0.9em;
   }
   .headerContainer .rightSides {
     display: none;
@@ -547,6 +558,9 @@ a:hover {
   .logotext span {
     display: flex;
     font-size: 3rem;
+
+
+
   }
   .footer {
     display: none;
