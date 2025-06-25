@@ -1,4 +1,3 @@
-const url = "https://api.quotable.io/quotes/random?minLength=20&maxLength=100";
 
 const container = document.querySelector(".textarea-container");
 const textarea = document.querySelector(".textArea");
@@ -7,10 +6,12 @@ const userInput = document.querySelector(".input-box");
 let quote = "";
 let mistakes = 0;
 let backspaceCount = 0;
-let totalwords ;
-let count=+0;
-let timer = 30;
+let totalwords;
+let count=0;
 let data =[]
+let startTime= Date.now();
+
+let currentWordCount = 0;
 
 // how you render
 let dop = document.querySelector(".dp");
@@ -25,7 +26,7 @@ const rendering = async () => {
   const response = await fetch("/api/random-quote");
   const data = await response.json();
   quote = data.content;
-
+totalwords = quote.length;
   // now the quote to be changed in an array
 
   const words = quote
@@ -42,30 +43,24 @@ const rendering = async () => {
     })
     .join(" ");
 
-  let div = document.createElement("span");
-  div.classList.add("carter");
+    let div = document.createElement("span");
+    div.classList.add("carter");
 
-  textarea.innerHTML = `
-<div class = "quote-container"> 
-${div.outerHTML}
-${words}
-</div>`;
-};
+          textarea.innerHTML = `
+        <div class = "quote-container"> 
+        ${div.outerHTML}
+        ${words}
+        </div>`;
+        };
 const xyz = async () => {
   let currentPosition = 0; // Track current cursor position globally
   userInput.addEventListener("input", (e) => {
     const characterQuotes = document.querySelector(".quote-container");
-    if(characterQuotes==null)
-    {return}
     let cq = Array.from(characterQuotes.querySelectorAll("letter"));
     const userInputChars = Array.from(e.target.value);
-    totalwords = userInputChars.length;
-      for (arr of cq) {
-      if (arr.classList.contains("failure")) {
-        count++;
-      }}
+
     if (cq.length - 1 === userInputChars.length) {
-      wpm(totalwords, timer, count);
+      wpm(totalwords,mistakes);
       // return rendering();
     }
     // Update current position based on cursor location
@@ -81,39 +76,44 @@ const xyz = async () => {
       } else if (userInputChars[index] == null) {
         cq.classList.remove("success", "failure");
       } else {
+
         if (!cq.classList.contains("failure")) {
+          if(userInputChars[index] == " " && cq.innerText == "")
+          {
+mistakes= mistakes -1;
+          }
           cq.classList.add("failure");
-          mistakes++;
+          mistakes = mistakes + 1;
         }
       }
     });
   });
 };
 // above two fx are Main(). EG: Workstation
-function addarr(totalwords,timer,count){
-  let grossWpm = (totalwords / 5 / 60) * 100;
-  console.log(grossWpm)
-  data.push(parseInt(grossWpm))
-  console.log(data)
+function addarr(currentWordCount){
+  const elapsedMinutes = (Date.now() - startTime) / (1000 * 60);
+  const grossWpm = currentWordCount / 5 / elapsedMinutes;
+  data.push(Math.round(grossWpm))
 }
-function wpm(tw, timer, ucE) {
-  let grossWpm = (tw / 5 / 60) * 100;
-  let finalnetWpm = parseInt(grossWpm);
+function wpm(totalWords,mistakes) {
+  clearInterval(interval1);
+  const elapsedMinutes = (Date.now() - startTime) / (1000 * 60);
+  const grossWpm = Math.round(totalWords / 5 / elapsedMinutes);
+  const netWpm = Math.max(0, grossWpm - mistakes ); // Prevent negative WPM
+  const finalnetWpm=  Math.round(netWpm);
   let chartwrapper = document.querySelector(".chart-wrapper");
   chartwrapper.style.display = "flex";
-
-  // Example usage:
-  // console.log(finalnetWpm);
-  updateWPMDisplay(finalnetWpm); // Call this with your actual WPM value
+  updateWPMDisplay(finalnetWpm,grossWpm); // Call this with your actual WPM value
 }
 // above fx works first as user completed the game
 // downward fx works to show user their speed with better UI/UX
-function updateWPMDisplay(netWpm) {
+function updateWPMDisplay(netWpm,grossWpm) {
   drawChart();
   window.addEventListener('resize', () => {
     drawChart();
   });
   const wpmElement = document.querySelector(".wpm-value");
+  const wpmElementRaw = document.querySelector(".wpm-value-raw");
   const duration = 1000; // Animation duration in milliseconds
   const startTime = performance.now();
   const startValue = 0;
@@ -126,12 +126,13 @@ function updateWPMDisplay(netWpm) {
     const easedProgress = 1 - Math.pow(1 - progress, 2);
 
     Math.floor(easedProgress * netWpm);
-    wpmElement.textContent =    Math.floor(easedProgress * netWpm);
-
+    wpmElement.textContent =  Math.floor(easedProgress * netWpm);
+    wpmElementRaw.textContent = Math.floor(easedProgress * grossWpm)
     if (progress < 1) {
       requestAnimationFrame(animateWPM);
     } else {
       wpmElement.textContent = netWpm; // Ensure final value is exact
+      wpmElementRaw.textContent= grossWpm;
     }
   }
   textarea.textContent = "";
@@ -239,29 +240,29 @@ function handleTyping() {
 }
 
 (()=>{
-
+  interval1=setInterval(()=>{addarr(currentWordCount)},3000)
 userInput.addEventListener("input", (e) => {
   try{
-  const quoteContainer = document.querySelector(".quote-container")
-  const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure')  || e.classList.contains('failure'))  ;
-  const characters = allLetters[e.target.selectionStart-2];
-
-  let characters1 = allLetters[e.target.selectionStart-1];
+    currentWordCount = Math.round(e.target.value.split("").length / 5);
+    const quoteContainer = document.querySelector(".quote-container")
+    const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure') )  ;
+    const characters = allLetters[e.target.selectionStart-2];
+    const characters1 = allLetters[e.target.selectionStart-1];
 
 
   let p = Math.floor(characters.getBoundingClientRect().y)
   let p1 = Math.floor(characters1.getBoundingClientRect().y)
 
-
   if (p1 > p ) {
-    addarr(totalwords,timer,count)
+
     moveup()
-  }
-  // if(p1>p) console.log('here you will move up')
-  // console.log(quoteContainer.getBoundingClientRect()) ;
 
   }
-  catch(e){}
+
+  }
+  catch(e){
+    console.log(e)
+  }
 });
 })()
 
