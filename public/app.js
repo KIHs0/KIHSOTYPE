@@ -55,6 +55,8 @@ const xyz = async () => {
   let currentPosition = 0; // Track current cursor position globally
   userInput.addEventListener("input", (e) => {
     const characterQuotes = document.querySelector(".quote-container");
+    if(characterQuotes==null)
+    {return}
     let cq = Array.from(characterQuotes.querySelectorAll("letter"));
     const userInputChars = Array.from(e.target.value);
     totalwords = userInputChars.length;
@@ -90,6 +92,7 @@ const xyz = async () => {
 // above two fx are Main(). EG: Workstation
 function addarr(totalwords,timer,count){
   let grossWpm = (totalwords / 5 / 60) * 100;
+  console.log(grossWpm)
   data.push(parseInt(grossWpm))
   console.log(data)
 }
@@ -202,8 +205,9 @@ function cartemove(position) {
   handleTyping();
   let carter = document.querySelector(".carter");
 
-  // Calculating  cumulative position by getting the position of all previous characters
+  // Calculating  cumulative position by getting the position of all previous charactzers
   const quoteContainer = document.querySelector(".quote-container");
+  if(quoteContainer==null) return;
   const allLetters = Array.from(quoteContainer.querySelectorAll("letter"));
 
   const currentChar = allLetters[position];
@@ -220,6 +224,9 @@ function cartemove(position) {
 // ---------------------------When user is actively typing CSS
 function handleTyping() {
   const carter = document.querySelector(".carter");
+  if(carter == null)
+  {return;}
+
   carter.classList.add("typing");
   carter.classList.remove("idle");
 
