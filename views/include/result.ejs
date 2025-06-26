@@ -2,16 +2,36 @@
 <html lang="en">
 <head>
     <style>
+        .wpmdivs{
+            text-align: center;font-size: 2rem; font-weight: bold;color: white;position:absolute ; display: none; flex-direction: column; justify-content: center; align-items: center;margin-top: 8rem;
+        }
+        .wpmdivs2{
+    margin-top: 2rem; text-align: center; flex-direction:row; gap:1.2rem; justify-content:space-between;align-items: center;
+
+}
+        .wpm{font-size:1rem;color:white}
+        .wpm-value-raw {
+            color:yellow;font-size: 3rem;font-weight: bold;
+        }
+        .wpm-value-raw-accuracy{
+            color:yellow;font-size: 2.5rem;font-weight: bold;
+        }
+
+        .wpm-value-raw-mistakes {
+            color:yellow;font-size: 3rem;font-weight: bold;
+        }
 
         .chart-wrapper {
             max-width: 100%;
             position:absolute;
-            display: none;
             text-align: center;
             justify-content: center;
             align-items: center;
             z-index:10000;
-            width: 95vw;
+            width: 90vw;
+            left: 6.5vw;
+            height: 75vh;
+            display: none;
         }
 
         .y-axis {
@@ -70,10 +90,18 @@
         /* Smaller sizes on narrow screens */
         @media (max-width: 600px) {
           body{
-
               overflow-y:hidden;
           }
 
+            .wpmdivs{margin-bottom:-5rem;gap:1rem}
+            .wpm{font-size: 0.7rem}
+
+            .wpm-value {font-size: 1.9rem;}
+            .wpm-value-raw {font-size: 1.9rem;}
+            .wpm-value-raw-mistakes {font-size: 1.9rem;}
+            .wpm-value-raw-accuracy{
+           font-size: 1.9rem;
+            }
 
             .y-axis {
                 width: 30px;
@@ -114,19 +142,36 @@
     </style>
 </head>
 <body>
+<div class="wpmdivs">
+<span class="wpm-value" style="color:yellow">0</span>
+<span class="wpm-label wpm"  style="color: white">WPM</span>
+    <span class="wpm-value-raw-accuracy" style="color:yellow">0%</span>
+    <span class="wpm-label-raw-accuracy wpm"> Accuracy</span>
+
+</div>
+
 
 <div class="chart-wrapper">
-    <div class="y-axis" id="yAxisLabels"></div>
+
+    <div class="y-axis" id="yAxisLabels">
+
+    </div>
+
     <div class="chart-scroll">
-        <span class="wpm-value-raw " style="color:yellow;font-size: 3rem;font-weight: bold">0</span>
-        <span class="wpm-label-raw  wpm-label"  style="color: white"> Raw WPM &nbsp;&nbsp;</span>
-        <span class="wpm-value" style="color:yellow">0</span>
-        <span class="wpm-label"  style="color: white">WPM</span>
+
         <div class="chart-container" id="chartContainer">
             <svg id="lineChart" class="svgs"></svg>
         </div>
+        <div class="wpmdivs2" >
+            <span class="wpm-value-raw " >0</span>
+            <span class="wpm-label-raw  wpm-label wpm"  style="color: white"> RAW &nbsp;&nbsp;</span>
+            <span class="wpm-value-raw-mistakes " >0</span>
+            <span class="wpm-label-raw-mistakes wpm">  Mistakes</span>
+        </div>
+        </div>
     </div>
-</div>
+
+
 
 </body>
 </html>

@@ -99,21 +99,27 @@ function wpm(totalWords,mistakes) {
   clearInterval(interval1);
   const elapsedMinutes = (Date.now() - startTime) / (1000 * 60);
   const grossWpm = Math.round(totalWords / 5 / elapsedMinutes);
-  const netWpm = Math.max(0, grossWpm - mistakes ); // Prevent negative WPM
+const wordMistakes = Math.round(mistakes  /5 -elapsedMinutes);
+const accuracy = Math.round(Math.max(0,(totalWords - mistakes)/ totalWords * 100));
+  const netWpm = Math.max(0, (grossWpm - wordMistakes / elapsedMinutes )); // Prevent negative WPM
   const finalnetWpm=  Math.round(netWpm);
   let chartwrapper = document.querySelector(".chart-wrapper");
   chartwrapper.style.display = "flex";
-  updateWPMDisplay(finalnetWpm,grossWpm); // Call this with your actual WPM value
+  updateWPMDisplay(finalnetWpm,grossWpm,accuracy,wordMistakes); // Call this with your actual WPM value
 }
 // above fx works first as user completed the game
 // downward fx works to show user their speed with better UI/UX
-function updateWPMDisplay(netWpm,grossWpm) {
-  drawChart();
+function updateWPMDisplay(netWpm,grossWpm,accuracy,wordMistakes) {
+  drawChart(grossWpm);
   window.addEventListener('resize', () => {
-    drawChart();
+    drawChart(grossWpm);
   });
   const wpmElement = document.querySelector(".wpm-value");
   const wpmElementRaw = document.querySelector(".wpm-value-raw");
+  const wpmdivs = document.querySelector('.wpmdivs')
+  const accuracySpan = document.querySelector('.wpm-value-raw-accuracy')
+const mistakeSpan = document.querySelector('.wpm-value-raw-mistakes')
+  wpmdivs.style.display= 'flex';
   const duration = 1000; // Animation duration in milliseconds
   const startTime = performance.now();
   const startValue = 0;
@@ -125,18 +131,22 @@ function updateWPMDisplay(netWpm,grossWpm) {
     // Ease-out function for smoother animation
     const easedProgress = 1 - Math.pow(1 - progress, 2);
 
-    Math.floor(easedProgress * netWpm);
     wpmElement.textContent =  Math.floor(easedProgress * netWpm);
     wpmElementRaw.textContent = Math.floor(easedProgress * grossWpm)
+    accuracySpan.textContent = Math.floor(easedProgress * accuracy);
+    mistakeSpan.textContent = Math.floor(easedProgress * wordMistakes);
+
     if (progress < 1) {
       requestAnimationFrame(animateWPM);
     } else {
       wpmElement.textContent = netWpm; // Ensure final value is exact
       wpmElementRaw.textContent= grossWpm;
+      accuracySpan.textContent = `${accuracy}%`;
+      mistakeSpan.textContent = wordMistakes;
     }
   }
   textarea.textContent = "";
-  function drawChart() {
+  function drawChart(grossWpm) {
     const svg = document.getElementById("lineChart");
     const chartContainer = document.getElementById("chartContainer");
     svg.innerHTML = "";
@@ -150,7 +160,8 @@ function updateWPMDisplay(netWpm,grossWpm) {
 
     const minData = 0;
     const maxDataRaw = Math.max(...data);
-    const maxData = Math.ceil(maxDataRaw / 50) * 50;
+    const maxData = Math.ceil(maxDataRaw / 50) * grossWpm ;
+
     const range = maxData - minData;
 
     drawYAxis(minData, maxData);
@@ -185,6 +196,7 @@ function updateWPMDisplay(netWpm,grossWpm) {
       svg.appendChild(circle);
     });
   }
+  // 9821816861
   function drawYAxis(minVal, maxVal) {
     const yAxis = document.getElementById("yAxisLabels");
     yAxis.innerHTML = "";
