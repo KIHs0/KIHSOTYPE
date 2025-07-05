@@ -5,6 +5,7 @@
   [![Render Badge](https://img.shields.io/badge/Render-Deployed-5C4EE5)](https://kihsotype.onrender.com)
   ![Tech Stack](https://img.shields.io/badge/Stack-MERN-09AC3F)
   ![License](https://img.shields.io/badge/License-MIT-blue)
+
 </div>
 
 ![image](https://github.com/user-attachments/assets/3c73d7d7-f978-4403-af3b-e88cca3ae150)
@@ -91,6 +92,9 @@ KIHSOTYPE/
 
 Thanks to everyone who's inspired me to build in public and push past perfectionism.  
 Drop a ⭐ if you like it!
+
+## 📚 DOCS
+  [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/KIHs0/KIHSOTYPE)
 
 ## ✒️ **Author**
   <div align="center">
