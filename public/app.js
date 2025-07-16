@@ -196,12 +196,12 @@ const mistakeSpan = document.querySelector('.wpm-value-raw-mistakes')
       svg.appendChild(circle);
     });
   }
-  // 9821816861
+
   function drawYAxis(minVal, maxVal) {
     const yAxis = document.getElementById("yAxisLabels");
     yAxis.innerHTML = "";
-
     const steps = 1;
+
     const stepSize = (maxVal - minVal) / steps;
 
     for (let i = steps; i >= 0; i--) {
@@ -254,7 +254,11 @@ function handleTyping() {
 (()=>{
   interval1=setInterval(()=>{addarr(currentWordCount)},3000)
 userInput.addEventListener("input", (e) => {
+
+
   try{
+    if (e.inputType==='deleteContentBackward') return;
+
     currentWordCount = Math.round(e.target.value.split("").length / 5);
     const quoteContainer = document.querySelector(".quote-container")
     const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure') )  ;
@@ -262,8 +266,8 @@ userInput.addEventListener("input", (e) => {
     const characters1 = allLetters[e.target.selectionStart-1];
 
 
-  let p = Math.floor(characters.getBoundingClientRect().y)
-  let p1 = Math.floor(characters1.getBoundingClientRect().y)
+  let p = Math.floor(characters?.getBoundingClientRect().y)
+  let p1 = Math.floor(characters1?.getBoundingClientRect().y)
 
   if (p1 > p ) {
 
