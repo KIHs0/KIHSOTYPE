@@ -106,7 +106,6 @@ main()
     .catch((e) => console.log("sth got wrong connecting database",e));
 async function main() {
   await mongoose.connect(process.env.MONGODB_URL);
-// await mongoose.connect("mongodb://127.0.0.1:27017/kihsotype")
 }
 
 app.listen(port, (req, res) => {

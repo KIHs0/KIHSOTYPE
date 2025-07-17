@@ -10,8 +10,8 @@ let totalwords;
 let count=0;
 let data =[]
 let startTime= Date.now();
-
 let currentWordCount = 0;
+
 
 // how you render
 let dop = document.querySelector(".dp");
@@ -20,6 +20,25 @@ function dp(icon) {
   dop.style.display = dop.style.display === "none" ? "block" : "none";
 }
 
+function counter (tw,count) {
+  console.log('hi')
+
+  if(count) {
+document.querySelector('.counter').innerText = count;
+  }
+  else{
+    const counterDiv = document.createElement('div');  // Create the div element
+    counterDiv.classList.add('counter-div');
+    counterDiv.innerHTML = `
+    <span class="counter">${count}</span> 
+    /
+    <span>${tw}</span>
+  `;
+    document.body.appendChild(counterDiv);
+  }
+}
+
+
 const rendering = async () => {
   xyz();
   userInput.value = "";
@@ -27,6 +46,8 @@ const rendering = async () => {
   const data = await response.json();
   quote = data.content;
 totalwords = quote.length;
+  counter(Math.floor(totalwords /5),count)
+
   // now the quote to be changed in an array
 
   const words = quote
@@ -43,9 +64,9 @@ totalwords = quote.length;
     })
     .join(" ");
 
+
     let div = document.createElement("span");
     div.classList.add("carter");
-
           textarea.innerHTML = `
         <div class = "quote-container"> 
         ${div.outerHTML}
@@ -254,12 +275,10 @@ function handleTyping() {
 (()=>{
   interval1=setInterval(()=>{addarr(currentWordCount)},3000)
 userInput.addEventListener("input", (e) => {
-
-
   try{
     if (e.inputType==='deleteContentBackward') return;
-
     currentWordCount = Math.round(e.target.value.split("").length / 5);
+counter(Math.floor(totalwords / 5),currentWordCount)
     const quoteContainer = document.querySelector(".quote-container")
     const allLetters = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=>!e.classList.contains('space') || e.classList.contains('success') || e.classList.contains('failure') )  ;
     const characters = allLetters[e.target.selectionStart-2];
@@ -327,6 +346,7 @@ document.addEventListener("keydown", function (e) {
       // console.log(`Backspaces used: ${backspaceCount}`);
     }
   }
+
 });
 //  GSAP SWORD svg use
 document.addEventListener("mousemove", (e) => {

@@ -77,6 +77,18 @@ html {
   height: 100%;
   /* cursor: none; */
 }
+.counter-div{
+
+  margin-top: -700px;
+  font-size: 3.5rem;
+  color: yellow;
+  font-family: "Lato", sans-serif,"Roboto Mono", monospace;
+  font-weight: 990;
+  font-style: normal;
+  border-radius: 10px;
+  z-index: 100;
+}
+
 body {
   overflow-x: hidden;
   overflow-y: hidden;
