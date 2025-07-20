@@ -78,9 +78,8 @@ html {
   /* cursor: none; */
 }
 .counter-div{
-
   margin-top: -700px;
-  font-size: 3.5rem;
+font-size:2.3rem;
   color: yellow;
   font-family: "Lato", sans-serif,"Roboto Mono", monospace;
   font-weight: 990;
@@ -104,7 +103,7 @@ body {
   text-align: center;
   padding: 0.6rem;
   font-family: "Lato" ,"Lato", sans-serif,"Roboto Mono", monospace,Arail;
-  font-weight: 900;
+  font-weight: 600;
   font-style: normal;
 }
 /* Default Light Theme */
@@ -179,9 +178,9 @@ body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
   /* position: absolute; */
   opacity: 1;
   text-align: center;
-  margin: 100px 32rem;
+  margin: 100px 20rem;
   fill: yellow;
-  animation: moveForward3D 0.8s linear infinite;
+  animation: moveForward3D 1s linear infinite;
   transform-style: preserve-3d;
 }
 .bi-arrow-clockwise {
@@ -264,7 +263,7 @@ body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
 .headerContainer a {
   text-decoration: none;
   color: rgba(128, 128, 128, 0.872);
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 svg {
@@ -337,7 +336,7 @@ svg {
 .textarea-container div {
   position: inherit;
   display: inline-block;
-  font-size: 2.7rem;
+  font-size: 2.4rem;
   text-align: justify;
 }
 
@@ -353,12 +352,11 @@ input {
 
 .space {
   opacity: 0.5; /* Make spaces semi-transparent */
-  margin-left: -0.5rem; /* Add horizontal padding */
+  margin-left: -0.6rem; /* Add horizontal padding */
 }
 
 letter {
   display: inline-block;
-  /* animation: fadeIn 0.3s ease-out; */
   margin-right: 0.01em;
 }
 
@@ -421,7 +419,7 @@ a:hover {
   color: #fec20c;
   text-transform: uppercase;
     font-family: "Monoton", sans-serif;
-    font-weight: 400;
+    font-weight: 100;
     font-style: normal;
 font-size: clamp(1.5rem, 1vw, 2rem);
 }
@@ -478,6 +476,11 @@ font-size: clamp(1.5rem, 1vw, 2rem);
   .sss {
     display: none;
   }
+  .counter-div{
+font-size: 1.2rem;
+  margin-top: -70vh;
+  }
+
   .notification {
     background-color: rgba(40, 40, 40, 0.9);
     color: #ff5555;
