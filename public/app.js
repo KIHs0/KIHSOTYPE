@@ -20,8 +20,7 @@ function dp(icon) {
   dop.style.display = dop.style.display === "none" ? "block" : "none";
 }
 
-function counter (tw,count) {
-  console.log('hi')
+function counter (tw,count)   {
 
   if(count) {
 document.querySelector('.counter').innerText = count;
@@ -74,10 +73,14 @@ totalwords = quote.length;
         </div>`;
         };
 const xyz = async () => {
+
+
   let currentPosition = 0; // Track current cursor position globally
   userInput.addEventListener("input", (e) => {
+    // const cq = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=> e.classList.contains('success') || e.classList.contains('failure') )  ;
     const characterQuotes = document.querySelector(".quote-container");
-    let cq = Array.from(characterQuotes.querySelectorAll("letter"));
+    let cq = Array.from(characterQuotes.querySelectorAll("letter")).filter((e)=> !e.classList.contains('failure') || !e.classList.contains('success'))
+    // let cq = Array.from(characterQuotes.querySelectorAll("letter")).filter((e)=>e.classList.contains('space') || e.classlist.contains('success') || e.classList.contains('failure'));
     const userInputChars = Array.from(e.target.value);
 
     if (cq.length - 1 === userInputChars.length) {
