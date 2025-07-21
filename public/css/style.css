@@ -312,8 +312,8 @@ svg {
 
 .transform {
   display: none;
-  transform: translateY(-1200px); /* Starts 20px lower */
-  transition: all 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+  transform: translateY(-100px); /* Starts 20px lower */
+  transition: all 10.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
 }
 
 /* footer CSS ^ */
@@ -352,7 +352,7 @@ input {
 
 .space {
   opacity: 0.5; /* Make spaces semi-transparent */
-  margin-left: -0.6rem; /* Add horizontal padding */
+  margin-left:-0.720rem /* Add horizontal padding */
 }
 
 letter {
@@ -472,13 +472,14 @@ font-size: clamp(1.5rem, 1vw, 2rem);
   fill: yellow;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 620px) {
   .sss {
     display: none;
   }
   .counter-div{
-font-size: 1.2rem;
-  margin-top: -70vh;
+font-size: 1rem;
+  margin-top: -495px;
+    z-index: 9999999;
   }
 
   .notification {
@@ -531,7 +532,8 @@ font-size: 1.2rem;
   }
 
   .headerContainer .leftSides .logotext span {
-    font-size: 0.9em;
+font-size: 1.4rem;
+font-weight: 700;
   }
   .headerContainer .rightSides {
     display: none;
@@ -612,7 +614,7 @@ font-size: 1.2rem;
 
 /*  for mobile */
 
-@media (min-width: 450px) {
+@media (min-width: 620px) {
   /* right side mob header */
   .rightSidesMob {
     display: none;
