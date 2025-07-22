@@ -352,7 +352,7 @@ input {
 
 .space {
   opacity: 0.5; /* Make spaces semi-transparent */
-  margin-left:-0.720rem /* Add horizontal padding */
+  margin-left:-0.7rem /* Add horizontal padding */
 }
 
 letter {
