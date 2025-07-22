@@ -316,6 +316,7 @@ svg {
   transition: all 10.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
 }
 
+
 /* footer CSS ^ */
 .textarea-container {
   /* cursor: pointer; */
@@ -335,29 +336,28 @@ svg {
 
 .textarea-container div {
   position: inherit;
-  display: inline-block;
+  display: inline;
   font-size: 2.4rem;
   text-align: justify;
 }
+
+
 
 .success {
   color: white;
 }
 .failure {
   color: rgba(255, 0, 0, 0.85);
+
 }
 input {
   opacity: 0;
 }
 
-.space {
-  opacity: 0.5; /* Make spaces semi-transparent */
-  margin-left:-0.7rem /* Add horizontal padding */
-}
+.space{}
 
 letter {
   display: inline-block;
-  margin-right: 0.01em;
 }
 
 a:hover {

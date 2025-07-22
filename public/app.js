@@ -61,7 +61,7 @@ totalwords = quote.length;
       <letter class="space"></letter>
       `;
     })
-    .join(" ");
+    .join("");
 
 
     let div = document.createElement("span");
