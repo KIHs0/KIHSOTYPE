@@ -78,8 +78,9 @@ html {
   /* cursor: none; */
 }
 .counter-div{
+
   margin-top: -700px;
-font-size:2.3rem;
+  font-size: 2.5rem;
   color: yellow;
   font-family: "Lato", sans-serif,"Roboto Mono", monospace;
   font-weight: 990;
@@ -103,7 +104,7 @@ body {
   text-align: center;
   padding: 0.6rem;
   font-family: "Lato" ,"Lato", sans-serif,"Roboto Mono", monospace,Arail;
-  font-weight: 600;
+  font-weight: 900;
   font-style: normal;
 }
 /* Default Light Theme */
@@ -114,7 +115,7 @@ body.dark-theme {
   background-color: white;
 }
 body.dark-theme .icons svg , body.dark-theme .iconsAa svg {
-fill:black;
+  fill:black;
 }
 body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
   color:black;
@@ -164,9 +165,9 @@ body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
   color: cornsilk;
   position: absolute;
   transform: rotateY(
-      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
-    )
-    translateZ(80px);
+          calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+  )
+  translateZ(80px);
   inset: 0 0 0 0;
 }
 
@@ -178,9 +179,9 @@ body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
   /* position: absolute; */
   opacity: 1;
   text-align: center;
-  margin: 100px 20rem;
+  margin: 100px 32rem;
   fill: yellow;
-  animation: moveForward3D 1s linear infinite;
+  animation: moveForward3D 0.8s linear infinite;
   transform-style: preserve-3d;
 }
 .bi-arrow-clockwise {
@@ -263,7 +264,7 @@ body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
 .headerContainer a {
   text-decoration: none;
   color: rgba(128, 128, 128, 0.872);
-  opacity: 0.9;
+  opacity: 0.6;
 }
 
 svg {
@@ -312,10 +313,9 @@ svg {
 
 .transform {
   display: none;
-  transform: translateY(-100px); /* Starts 20px lower */
-  transition: all 10.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+  transform: translateY(-1200px); /* Starts 20px lower */
+  transition: all 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
 }
-
 
 /* footer CSS ^ */
 .textarea-container {
@@ -336,28 +336,30 @@ svg {
 
 .textarea-container div {
   position: inherit;
-  display: inline;
-  font-size: 2.4rem;
+  display: inline-block;
+  font-size: 2.7rem;
   text-align: justify;
 }
-
-
 
 .success {
   color: white;
 }
 .failure {
   color: rgba(255, 0, 0, 0.85);
-
 }
 input {
   opacity: 0;
 }
 
-.space{}
+.space {
+  opacity: 0.5; /* Make spaces semi-transparent */
+  margin-left: -0.5rem; /* Add horizontal padding */
+}
 
 letter {
   display: inline-block;
+  /* animation: fadeIn 0.3s ease-out; */
+  margin-right: 0.01em;
 }
 
 a:hover {
@@ -418,10 +420,10 @@ a:hover {
 .logotext span {
   color: #fec20c;
   text-transform: uppercase;
-    font-family: "Monoton", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-font-size: clamp(1.5rem, 1vw, 2rem);
+  font-family: "Monoton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.5rem, 1vw, 2rem);
 }
 
 
@@ -472,16 +474,10 @@ font-size: clamp(1.5rem, 1vw, 2rem);
   fill: yellow;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 680px) {
   .sss {
     display: none;
   }
-  .counter-div{
-font-size: 1rem;
-  margin-top: -495px;
-    z-index: 9999999;
-  }
-
   .notification {
     background-color: rgba(40, 40, 40, 0.9);
     color: #ff5555;
@@ -509,31 +505,34 @@ font-size: 1rem;
   .carter {
     font-size: 17px;
   }
+.counter-div{
+  margin-top: -480px;
+  font-size: 1.2rem;
+}
 
   .rightSides {
     display: none;
   }
 
   body {
-    font-size: 13px; /* Slightly larger for mobile readability */
-    margin: 0;
-    padding: 1rem; /* Small padding to prevent edge crowding */
-    max-width: 400px; /* Restrict width for small screens */
+    font-size: 1rem; /* Slightly larger for mobile readability */
+    margin: 0 auto;
+    padding: 8dvh 2dvw ; /* Small padding to prevent edge crowding */
+    max-width: 400dvw; /* Restrict width for small screens */
     width: 100%; /* Ensure it takes full available width */
     min-height: 100vh; /* Full viewport height */
     color: hwb(0 20% 80% / 0.769); /* Dark text for contrast */
     /* overflow-x: hidden; */
     text-align: center; /* Center-align text */
     touch-action: manipulation; /* Improve touch responsiveness */
-    line-height: 1.2;
+    line-height: 1.1;
   }
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
   }
 
   .headerContainer .leftSides .logotext span {
-font-size: 1.4rem;
-font-weight: 700;
+    font-size: 0.9em;
   }
   .headerContainer .rightSides {
     display: none;
@@ -568,6 +567,7 @@ font-weight: 700;
   .rightSidesMob a {
     display: flex;
     flex-direction: column;
+
   }
   .refresh {
     display: none;
@@ -614,7 +614,7 @@ font-weight: 700;
 
 /*  for mobile */
 
-@media (min-width: 620px) {
+@media (min-width: 680px) {
   /* right side mob header */
   .rightSidesMob {
     display: none;
