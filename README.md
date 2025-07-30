@@ -92,7 +92,7 @@ KIHSOTYPE/
 Thanks to everyone who's inspired me to build in public and push past perfectionism.  
 Drop a ⭐ if you like it!
 
-## License
+## 📜 License
 
 This project is licensed under the [MIT License](./LICENSE).  ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 Feel free to use it for learning ,exploring, contributin . Commercial use requires permission .
