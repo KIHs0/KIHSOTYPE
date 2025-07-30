@@ -499,7 +499,8 @@ a:hover {
   }
 
   .quote-container letter {
-font-size: 6dvw;
+font-size: 1.4rem;
+    font-weight: 700;
   }
 
   .carter {
