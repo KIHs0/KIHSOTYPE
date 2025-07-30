@@ -495,16 +495,16 @@ a:hover {
     animation: borderPulse 1.8s linear;
   }
   .textarea-container div {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
   }
 
   .quote-container letter {
-font-size: 1.4rem;
+font-size: 1.5rem;
     font-weight: 700;
   }
 
   .carter {
-    font-size: 17px;
+    font-size: 23px;
   }
 .counter-div{
   margin-top: -680px;
@@ -517,7 +517,6 @@ font-size: 1.4rem;
 
   body {
     font-size: 1rem; /* Slightly larger for mobile readability */
-    padding: 8dvh 0 0 0 ; /* Small padding to prevent edge crowding */
     max-width: 400dvw; /* Restrict width for small screens */
     width: 100%; /* Ensure it takes full available width */
     min-height: 100vh; /* Full viewport height */
@@ -526,7 +525,8 @@ font-size: 1.4rem;
     height: 100%;
     text-align: center; /* Center-align text */
     touch-action: manipulation; /* Improve touch responsiveness */
-    line-height: 1.1;
+    line-height: 1.2;
+    margin-top: 3rem;
   }
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
