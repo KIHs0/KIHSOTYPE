@@ -507,7 +507,7 @@ a:hover {
     font-size: 17px;
   }
 .counter-div{
-  margin-top: -580px;
+  margin-top: -680px;
   font-size: 1.2rem;
 }
 
@@ -533,8 +533,8 @@ a:hover {
   }
 .headerContainer{margin-top: -40px;margin-bottom: 50px;}
   .headerContainer .leftSides .logotext span {
-    font-size: 1em;
-    font-weight:200;
+    font-size: 1.2em;
+    font-weight:500;
   }
   .headerContainer .rightSides {
     display: none;
@@ -574,13 +574,7 @@ a:hover {
   .refresh {
     display: none;
   }
-  .logotext span {
-    display: flex;
-    font-size: 3rem;
 
-
-
-  }
   .footer {
     display: none;
 
@@ -592,7 +586,7 @@ a:hover {
   .footerMob {
     display: flex;
     justify-content: space-between;
-    margin-top: 300px;
+    margin : 390px 10px 0 10px;
   }
   .footerMob .rightfootermob {
     display: flex;
