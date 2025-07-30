@@ -95,7 +95,7 @@ Drop a ⭐ if you like it!
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).  ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-Feel free to use it for learning or personal projects. Commercial use requires permission.
+Feel free to use it for learning ,exploring, contributin . Commercial use requires permission .
 
 
 
