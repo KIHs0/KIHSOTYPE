@@ -495,11 +495,11 @@ a:hover {
     animation: borderPulse 1.8s linear;
   }
   .textarea-container div {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
 
   .quote-container letter {
-font-size: 1.4rem;
+font-size: 6dvw;
   }
 
   .carter {
