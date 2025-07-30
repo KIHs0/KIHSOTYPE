@@ -76,7 +76,7 @@ passport.deserializeUser(User.deserializeUser());
 app.get("/api/random-quote", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://api.quotable.io/quotes/random?minLength=100&maxLength=170",
+      "https://api.quotable.io/quotes/random?minLength=200&maxLength=300",
       { httpsAgent: agent }
     );
 

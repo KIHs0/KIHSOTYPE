@@ -264,7 +264,7 @@ body.dark-theme .bi-moon-fill , .body.dark-theme .bi-brightness-alt-high-fill{
 .headerContainer a {
   text-decoration: none;
   color: rgba(128, 128, 128, 0.872);
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 svg {
@@ -497,6 +497,7 @@ a:hover {
   .textarea-container div {
     font-size: 1.8rem;
   }
+
   .quote-container letter {
     font-size: 1.4rem;
 
@@ -506,7 +507,7 @@ a:hover {
     font-size: 17px;
   }
 .counter-div{
-  margin-top: -480px;
+  margin-top: -580px;
   font-size: 1.2rem;
 }
 
@@ -516,13 +517,13 @@ a:hover {
 
   body {
     font-size: 1rem; /* Slightly larger for mobile readability */
-    margin: 0 auto;
-    padding: 8dvh 2dvw ; /* Small padding to prevent edge crowding */
+    padding: 8dvh 0 0 0 ; /* Small padding to prevent edge crowding */
     max-width: 400dvw; /* Restrict width for small screens */
     width: 100%; /* Ensure it takes full available width */
     min-height: 100vh; /* Full viewport height */
     color: hwb(0 20% 80% / 0.769); /* Dark text for contrast */
     /* overflow-x: hidden; */
+    height: 100%;
     text-align: center; /* Center-align text */
     touch-action: manipulation; /* Improve touch responsiveness */
     line-height: 1.1;
@@ -530,9 +531,10 @@ a:hover {
   .pacman {
     margin: 7em auto; /* <-- thala for a reason--> */
   }
-
+.headerContainer{margin-top: -40px;margin-bottom: 50px;}
   .headerContainer .leftSides .logotext span {
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight:200;
   }
   .headerContainer .rightSides {
     display: none;
@@ -581,6 +583,7 @@ a:hover {
   }
   .footer {
     display: none;
+
   }
   .footerMob .leftfootermob {
     padding: 1rem;
@@ -589,8 +592,8 @@ a:hover {
   .footerMob {
     display: flex;
     justify-content: space-between;
+    margin-top: 300px;
   }
-
   .footerMob .rightfootermob {
     display: flex;
     padding: 1rem;
