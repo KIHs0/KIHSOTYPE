@@ -73,13 +73,25 @@ totalwords = quote.length;
         </div>`;
         };
 const xyz = async () => {
+let cq=[]
+const obes = new MutationObserver((mutations,obs) => {
+  const characterQuotes = document.querySelector(".quote-container");
+  console.log(characterQuotes)
+  if(characterQuotes == null) return;
+ cq = Array.from(characterQuotes?.querySelectorAll("letter"))
+  console.log(cq)
+  obs.disconnect()
+})
 
-
+  obes.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
   let currentPosition = 0; // Track current cursor position globally
   userInput.addEventListener("input", (e) => {
-    // const cq = Array.from(quoteContainer.querySelectorAll("letter")).filter((e)=> e.classList.contains('success') || e.classList.contains('failure') )  ;
-    const characterQuotes = document.querySelector(".quote-container");
-    let cq = Array.from(characterQuotes.querySelectorAll("letter")).filter((e)=> !e.classList.contains('failure') || !e.classList.contains('success'))
+
+
+
     // let cq = Array.from(characterQuotes.querySelectorAll("letter")).filter((e)=>e.classList.contains('space') || e.classlist.contains('success') || e.classList.contains('failure'));
     const userInputChars = Array.from(e.target.value);
 
@@ -313,7 +325,6 @@ const moveup = () => {
 
     arr.map((e) => {
       let arr4 = [...e.childNodes].filter(e=>e.classList.contains('success') || e.classList.contains('failure') || e.classList.contains('space'));
-
       arr4.map((e) => {
         if (
           e.classList.contains("success") ||

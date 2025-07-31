@@ -313,8 +313,9 @@ svg {
 
 .transform {
   display: none;
-  transform: translateY(-1200px); /* Starts 20px lower */
-  transition: all 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+  transform: translateY(-200px); /* Starts 20px lower */
+  transition: all 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+  overflow:auto
 }
 
 /* footer CSS ^ */
@@ -324,14 +325,16 @@ svg {
   overflow: hidden;
   /* border: 2px solid beige; */
   max-width: 1200px;
-  margin: 0 auto;
   position: relative;
   padding: 0 2rem;
+margin: 0 auto;
   max-height: 100vh;
   height: 200px;
   display: flex;
   margin-top: 100px;
-  margin-bottom: 180px;
+  margin-bottom: 200px;
+
+
 }
 
 .textarea-container div {
@@ -352,6 +355,8 @@ input {
 }
 
 .space {
+
+
   opacity: 0.5; /* Make spaces semi-transparent */
   margin-left: -0.5rem; /* Add horizontal padding */
 }
