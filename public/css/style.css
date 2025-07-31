@@ -355,8 +355,6 @@ input {
 }
 
 .space {
-
-
   opacity: 0.5; /* Make spaces semi-transparent */
   margin-left: -0.5rem; /* Add horizontal padding */
 }
@@ -364,7 +362,7 @@ input {
 letter {
   display: inline-block;
   /* animation: fadeIn 0.3s ease-out; */
-  margin-right: 0.01em;
+  margin-right: 0.03em;
 }
 
 a:hover {

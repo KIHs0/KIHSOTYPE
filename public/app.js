@@ -76,10 +76,8 @@ const xyz = async () => {
 let cq=[]
 const obes = new MutationObserver((mutations,obs) => {
   const characterQuotes = document.querySelector(".quote-container");
-  console.log(characterQuotes)
   if(characterQuotes == null) return;
  cq = Array.from(characterQuotes?.querySelectorAll("letter"))
-  console.log(cq)
   obs.disconnect()
 })
 
