@@ -106,18 +106,20 @@ const obes = new MutationObserver((mutations,obs) => {
       }
       if (cq.innerText === userInputChars[index]) {
         cq.classList.add("success");
-        cq.classList.remove("failure");
       } else if (userInputChars[index] == null) {
-        cq.classList.remove("success", "failure");
+        // cq.classList.remove("success", "failure");
+        // cq.classList.add("success");
+        // cq.classList.add("transform");
       } else {
-
         if (!cq.classList.contains("failure")) {
+          cq.classList.add("failure");
+          mistakes = mistakes + 1;
+
           if(userInputChars[index] == " " && cq.innerText == "")
           {
 mistakes= mistakes -1;
           }
-          cq.classList.add("failure");
-          mistakes = mistakes + 1;
+
         }
       }
     });
@@ -326,7 +328,7 @@ const moveup = () => {
       arr4.map((e) => {
         if (
           e.classList.contains("success") ||
-          e.classList.contains("failure")
+          e.classList.contains("failure") || e.classList.contains('space') || e.classList.contains('hey')
         ) {
           e.classList.add("transform");
         }
